@@ -8,9 +8,11 @@
 .card:hover{
     transition: 1.5s;
     transform: scale(1.1);
+    cursor:pointer;
+    
 }
 .card-title {
-font-size: 6rem;
-opacity: 0.5;
+font-size: 5rem;
+/* opacity: 0.5; */
 font-weight: 600;
 }
