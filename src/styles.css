@@ -1,0 +1,16 @@
+.jumbotron{
+    /* text-decoration: underline;
+    text-underline-position: under; */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.card:hover{
+    transition: 1.5s;
+    transform: scale(1.1);
+}
+.card-title {
+font-size: 6rem;
+opacity: 0.5;
+font-weight: 600;
+}
