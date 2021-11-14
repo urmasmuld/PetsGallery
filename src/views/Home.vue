@@ -10,12 +10,14 @@
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
 import HomePage from "@/components/HomePage.vue";
+import Footer from "@/components/Footer.vue"
 
 export default {
   name: "Home",
   components: {
     // HelloWorld,
     HomePage,
+    Footer
   },
 };
 </script>
