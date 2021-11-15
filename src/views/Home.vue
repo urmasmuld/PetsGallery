@@ -3,6 +3,7 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
     <HomePage />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+     <Footer />
   </div>
 </template>
 
