@@ -5,9 +5,9 @@
         "liik": "Kass",
         "vanus": 6,
         "sugu": "Emane",
-        "vlimus": "Kolmevärviline: Valge, pruun, must",
+        "v2limus": "Kolmevärviline: Valge, pruun, must",
         "iseloom": "Sõbralik, meeldib mängida, lastega rahulik.",
-        "pilt": "https://drive.google.com/file/d/1X8mspGbkUiCJhMEr-j6vZceBArWqJBjT",
+        "pilt": "249053075_599850937727436_5504264366744182814_n.jpg",
         "lisainfo": "Paremat pilt praegu pole ;)"
     },
     {
@@ -16,9 +16,10 @@
         "liik": "Koer",
         "vanus": 8,
         "sugu": "Isane",
-        "vlimus": "Pikakarvaline mustjaspruun piirdega",
+        "v2limus": "Pikakarvaline mustjaspruun piirdega",
         "iseloom": "Rex oskab valvekoer olla, kuid samas kuuletub elementaarsetele käsklustele kenasti.",
-        "pilt": "https://drive.google.com/file/d/1giSTtX_tOyApi_tMQsmnLNP6jl4WadlH"
+        "pilt": "210230 rex-16343980040.jpg",
+        "lisainfo": ""
     },
     {
         "omanik": "Urmas",
@@ -26,9 +27,10 @@
         "liik": "Kass",
         "vanus": 1,
         "sugu": "Emane",
-        "vlimus": "Lühikarvaline must valgega",
+        "v2limus": "Lühikarvaline must valgega",
         "iseloom": "Hiirekuningas, lastesõber",
-        "pilt": "https://drive.google.com/file/d/10LbY1biBQUknjm2rIWXTjOYe8Vq0DvxR"
+        "pilt": "210920-16343855130.jpg",
+        "lisainfo": ""
     },
     {
         "omanik": "Madis",
@@ -36,7 +38,7 @@
         "liik": "Kass",
         "vanus": 10,
         "sugu": "Isane",
-        "vlimus": "Triibik, suurekasvuline",
+        "v2limus": "Triibik, suurekasvuline",
         "iseloom": "Pelgab võõraid",
         "lisainfo": "otsin midagi"
     },
@@ -46,7 +48,7 @@
         "liik": "Kass",
         "vanus": 13,
         "sugu": "Emane",
-        "vlimus": "Triibik, väike",
+        "v2limus": "Triibik, väike",
         "iseloom": "Kaisuloom, köögis kuningas",
         "lisainfo": "otsin midagi"
     },
@@ -56,9 +58,9 @@
         "liik": "Kass",
         "vanus": 3,
         "sugu": "Emane",
-        "vlimus": "Musta-valge kirju, valged käpad. ",
+        "v2limus": "Musta-valge kirju, valged käpad. ",
         "iseloom": "Iseteadev, nõudlik. ",
-        "pilt": "https://drive.google.com/file/d/1MRKva8l75ZalPWHLTBrlHytCwrqR777x",
+        "pilt": "image (1).jfif",
         "lisainfo": "Ärkab kell 5 ja nõuab õue. "
     },
     {
@@ -67,9 +69,9 @@
         "liik": "Kass",
         "vanus": 7,
         "sugu": "Emane",
-        "vlimus": "Must, valge sabaotsaga",
+        "v2limus": "Must, valge sabaotsaga",
         "iseloom": "Väga sõbralik. Lubab ennast väntsutada. ",
-        "pilt": "https://drive.google.com/file/d/1sV1G-toA89cx2YU1FZX9kd44IWHv-kKm",
+        "pilt": "image.jfif",
         "lisainfo": "Naudib laste seltskonda. Lubab ennast kringliks keerata. "
     },
     {
@@ -78,9 +80,10 @@
         "liik": "Koer",
         "vanus": 1,
         "sugu": "Isane",
-        "vlimus": "Beež punnsilmade ja sileda karvaga chihuahua. ",
+        "v2limus": "Beež punnsilmade ja sileda karvaga chihuahua. ",
         "iseloom": "Energiline ja seltsiv. Iseloomuga, teab mida tahab. Oskab solvuda. ",
-        "pilt": "https://drive.google.com/file/d/152g8wz8_MT84Y6MeMKWeqlnzUOhiM-ho"
+        "pilt": "image3.jfif",
+        "lisainfo": ""
     },
     {
         "omanik": "Kaisa",
@@ -88,9 +91,10 @@
         "liik": "Koer",
         "vanus": 9,
         "sugu": "Isane",
-        "vlimus": "Musta-valgekirju koer",
+        "v2limus": "Musta-valgekirju koer",
         "iseloom": "Omadega sõbralik, võõrastega hoiab distantsi. ",
-        "pilt": "https://drive.google.com/file/d/1z5J8PW-IJ0zWSOwp_x47VI-jsq0V7O7R"
+        "pilt": "Barnie7-1365x2048.png",
+        "lisainfo": ""
     },
     {
         "omanik": "Kaisa",
@@ -98,9 +102,10 @@
         "liik": "Koer",
         "vanus": 2,
         "sugu": "Isane",
-        "vlimus": "Valge-musta-beeži kirju koer. Valged esikäpad ja nina. ",
+        "v2limus": "Valge-musta-beeži kirju koer. Valged esikäpad ja nina. ",
         "iseloom": "Energiline ja rõõmus. Meeldib kaevata. ",
-        "pilt": "https://drive.google.com/file/d/1UymVm_0E7WQJQi0gV6x9qQv7hbxyfQJV"
+        "pilt": "beagle.jpg",
+        "lisainfo": ""
     },
     {
         "omanik": "Triin",
@@ -108,9 +113,10 @@
         "liik": "koer",
         "vanus": 4,
         "sugu": "Isane",
-        "vlimus": "Suurekavuline õue koer, meenutab saksa lambakoera",
+        "v2limus": "Suurekavuline õue koer, meenutab saksa lambakoera",
         "iseloom": "Väga energiline ja rõõmus koer. Meeldib joosta, hüpata ja püsib kodu lähedal.",
-        "pilt": "https://drive.google.com/drive/folders/1ij9KgObg95kcgIXODYE4e3ihHkblJoFt"
+        "pilt": "IMG_0414.JPG",
+        "lisainfo": ""
     },
     {
         "omanik": "Triin",
@@ -118,9 +124,10 @@
         "liik": "kass",
         "vanus": 6,
         "sugu": "Isane",
-        "vlimus": "Pruuni kirju, suur kass",
+        "v2limus": "Pruuni kirju, suur kass",
         "iseloom": "Meeldib magada diivanil, aknalaual. Valiv söögiosas ja üsna laisk.",
-        "pilt": "https://drive.google.com/drive/folders/1ij9KgObg95kcgIXODYE4e3ihHkblJoFt"
+        "pilt": "pilt2.jpg",
+        "lisainfo": ""
     },
     {
         "omanik": "Triin",
@@ -128,9 +135,10 @@
         "liik": "koer",
         "vanus": 1,
         "sugu": "Emane",
-        "vlimus": "Must pruunide kõrgete jlgadega koer.",
+        "v2limus": "Must pruunide kõrgete jlgadega koer.",
         "iseloom": "Väga energiline, meeldib asju närida ja hüpata..",
-        "pilt": "https://drive.google.com/drive/folders/1ij9KgObg95kcgIXODYE4e3ihHkblJoFt"
+        "pilt": "249849450_1675104456214757_8663591998194218904_n.jpg",
+        "lisainfo": ""
     },
     {
         "omanik": "Triin",
@@ -138,8 +146,9 @@
         "liik": "kass",
         "vanus": 5,
         "sugu": "Isane",
-        "vlimus": "Punasekirju kass",
+        "v2limus": "Punasekirju kass",
         "iseloom": "Mõnuleja, meeldib pugeda ja tulijaid tervitada.",
-        "pilt": "https://drive.google.com/drive/folders/1ij9KgObg95kcgIXODYE4e3ihHkblJoFt"
+        "pilt": "249851454_977839549808581_7159531669320212583_n.jpg",
+        "lisainfo": ""
     }
 ]
