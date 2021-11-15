@@ -1,19 +1,41 @@
 <template>
   <div class="pets">
-    <h1>Siia teeme kasutajapõhise dünaamilise lehe</h1>
-    <h2>Valisid kasutaja: <b>"{{ userId }}"</b></h2>
+    <h1> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
 <!-- See kood tuleb asendada siis meie disainiga :) -->
-    <ul class="list-group mb-3">
-      <li 
-      v-for="pets in petsFromServer" 
+<div class="boxes">
+  <div class="project"      
+  v-for="pets in petsFromServer" 
       :key="pets" 
-      class="list-group-item"
       >
-         Omanik: <b>{{ pets.omanik }}</b> | Lemmiku nimi: <b>{{ pets.loomaNimi }}</b> | Lemmiku liik: <b>{{ pets.liik }}</b>
-      </li>
-    </ul>
-    <div><router-link  to="/">Mine tagasi</router-link></div> <!-- Katsetuseks tagasi link -->
-
+    <div class="project__image"> 
+      <img v-bind:src="'/images/Lemmikloomad/'+pets.pilt" v-bind:alt="pets.loomaNimi">
+       </div>
+    <div class="project__text">
+     <li>
+       Omanik: <b>{{ pets.omanik }}</b>  
+    </li>
+  <li>
+ Lemmiku nimi: <b>{{ pets.loomaNimi }}</b>
+  </li>
+      <li>
+       Lemmiku liik: <b>{{ pets.liik }}</b>
+  </li>
+      <li>
+             Lemmiku vanus: <b>{{ pets.vanus }}</b>
+  </li>
+          <li>
+             Lemmiku sugu: <b>{{ pets.sugu }}</b>
+  </li>
+          <li>
+             Lemmiku v2limus: <b>{{ pets.v2limus }}</b>
+  </li>
+          <li>
+             Lemmiku iseloom: <b>{{ pets.iseloom }}</b>
+  </li>
+    </div>
+   <!--  <div><router-link  to="/">Mine tagasi</router-link></div>  Katsetuseks tagasi link -->
+    </div>
+  </div>
 <!-- siin lõpeb lisatav kood -->
   </div>
 </template>
@@ -52,3 +74,41 @@ getPets ()
   },
 };
 </script>
+
+<style>
+h1 {
+      margin-bottom: 5rem;
+}
+body{
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.project {
+	display:flex;
+	justify-content:space-between;
+  list-style-type: none;
+  .project__image,
+  .project__text {
+    @include span-columns(3 of 6);
+    @include omega(2n);
+    margin-right: 0px;
+    margin-bottom: 0px;
+    }
+}
+
+.project:nth-child(2n) {
+  flex-direction: row-reverse;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+    height: 200px;
+    border: 2px solid rgb(79, 48, 190);
+    /* border-radius: 10%; */
+    border-top-left-radius: 15%;
+    border-bottom-right-radius: 15%;
+}
+
+</style>
