@@ -22,9 +22,9 @@
 
     <div class="container-fluid p-5 mb-5">
           <div class="row">
-            
+
             <div class="col-12 col-sm-3">
-              <router-link :to="{ name: 'detail', params: { userId: 'madis' }}">
+              <router-link :to="{ name: 'detail', params: { userId: 'Madis' }}">
                 <div class="card text-white">
                 <img src="../assets/test_pilt.jpg" class="img-fluid" />
                 <div class="card-img-overlay d-flex align-items-end">
@@ -36,7 +36,7 @@
           
 
             <div class="col-12 col-sm-3"> 
-                <router-link :to="{ name: 'detail', params: { userId: 'urmas' }}">
+                <router-link :to="{ name: 'detail', params: { userId: 'Urmas' }}">
                   <div class="card text-white">
                   <img src="../assets/test_pilt.jpg" class="img-fluid" />
                   <div class="card-img-overlay d-flex align-items-end">
@@ -48,7 +48,7 @@
             
 
             <div class="col-12 col-sm-3">
-              <router-link :to="{ name: 'detail', params: { userId: 'kaisa' }}">
+              <router-link :to="{ name: 'detail', params: { userId: 'Kaisa' }}">
                 <div class="card text-white">
                 <img src="../assets/test_pilt.jpg" class="img-fluid" />
                 <div class="card-img-overlay d-flex align-items-end">
@@ -59,7 +59,7 @@
             </div>
 
             <div class="col-12 col-sm-3">
-                <router-link :to="{ name: 'detail', params: { userId: 'triin' }}">
+                <router-link :to="{ name: 'detail', params: { userId: 'Triin' }}">
                   <div class="card text-white">
                   <img src="../assets/test_pilt.jpg" class="img-fluid" />
                   <div class="card-img-overlay d-flex align-items-end">
