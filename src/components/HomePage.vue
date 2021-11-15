@@ -1,6 +1,6 @@
 <template>
   <div class="homepage">
-    <div>
+    <!-- <div>
       <router-link :to="{ name: 'detail', params: { userId: 'Madis' }}">madis</router-link>
     </div>
     <div>
@@ -12,5 +12,74 @@
     <div>
       <router-link :to="{ name: 'detail', params: { userId: 'Triin' }}">triin</router-link>
     </div>
-  </div>
+  </div> -->
+
+    <div class="jumbotron jumbotron-fluid">
+          <div class="container-fluid">
+            <h1 class="display-4 ml-5">Lemmikloomade galerii</h1>
+          </div>
+      </div>
+
+    <div class="container-fluid p-5 mb-5">
+          <div class="row">
+            
+            <div class="col-12 col-sm-3">
+              <router-link :to="{ name: 'detail', params: { userId: 'madis' }}">
+                <div class="card text-white">
+                <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                <div class="card-img-overlay d-flex align-items-end">
+                    <h3 class="card-title">Madis</h3>
+                </div>
+                </div>
+              </router-link>
+            </div>
+          
+
+            <div class="col-12 col-sm-3"> 
+                <router-link :to="{ name: 'detail', params: { userId: 'urmas' }}">
+                  <div class="card text-white">
+                  <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                  <div class="card-img-overlay d-flex align-items-end">
+                    <h3 class="card-title">Urmas</h3>
+                  </div>
+                  </div>
+              </router-link>
+            </div>
+            
+
+            <div class="col-12 col-sm-3">
+              <router-link :to="{ name: 'detail', params: { userId: 'kaisa' }}">
+                <div class="card text-white">
+                <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                <div class="card-img-overlay d-flex align-items-end">
+                  <h3 class="card-title">Kaisa</h3>
+                </div>
+                </div>
+                </router-link>
+            </div>
+
+            <div class="col-12 col-sm-3">
+                <router-link :to="{ name: 'detail', params: { userId: 'triin' }}">
+                  <div class="card text-white">
+                  <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                  <div class="card-img-overlay d-flex align-items-end">
+                    <h3 class="card-title">Triin</h3>
+                  </div>
+                  </div>
+                </router-link>
+            </div>
+
+          </div>
+        </div>
+      </div>
 </template>
+
+<script>
+  export default {
+  name: "HomePage",
+  props: {
+    msg: String,  },
+  };    
+
+</script>
+
