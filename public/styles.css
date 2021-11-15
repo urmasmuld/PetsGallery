@@ -4,10 +4,13 @@
     letter-spacing: 2px;
     text-transform: uppercase;
 }
-
+.card {
+transition: 1s;
+}
+    
 .card:hover{
     transition: 1.5s;
-    transform: scale(1.1);
+    transform: scale(1.2);
     cursor:pointer;
     
 }
