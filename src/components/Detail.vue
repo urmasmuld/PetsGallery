@@ -56,7 +56,8 @@ getPets ()
 };
 </script>
 
-<style>
+<style scoped>
+
 h1 {
       margin-bottom: 5rem;
 }
@@ -73,25 +74,28 @@ body{
 	display:flex;
 	justify-content:space-between;
   list-style-type: none;
-  .project__image,
-  .project__text {
-    @include span-columns(3 of 6);
-    @include omega(2n);
+  }
+
+  .project__image, .project__text {
     margin-right: 0px;
     margin-bottom: 0px;
+    padding:25px;
+       
     }
-}
 
 .project:nth-child(2n) {
   flex-direction: row-reverse;
 }
+
 img {
     vertical-align: middle;
     border-style: none;
     height: 200px;
+    width: auto;
     border: 2px solid rgb(79, 48, 190);
     border-top-left-radius: 15%;
     border-bottom-right-radius: 15%;
+
 }
 
 </style>
