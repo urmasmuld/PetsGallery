@@ -1,0 +1,75 @@
+<template>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <span class="navbar-text">
+           <h3>Lemmikloomade galerii</h3>
+        </span>
+  
+            
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Esileht</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Madis">Madis</a>
+                 </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Urmas">Urmas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Triin">Triin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Kaisa">Kaisa</a>
+                </li>
+            </ul>
+    </nav>
+</template>
+
+<script>
+export default {
+  name: "navbar",
+  props: {
+    msg: String,
+  },
+};
+</script>
+
+<style scoped>
+
+h3{
+  font-weight: 700px;
+  font-size: 40px;
+}
+.navbar {
+  padding:30px;
+  padding-top: 50px;
+  padding-bottom:50px;
+  margin-bottom:100px;
+  font-size: 32px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color:black;
+   
+}
+
+.nav-item {
+  
+color:black;
+transition: 1s;
+
+}
+
+.nav-item a:hover{
+  transition:1s;
+  transform: scale(1.1);
+}
+
+/* .navbar a.router-link-exact-active {
+  color: #42b983; */
+
+
+</style>
+
+
+
