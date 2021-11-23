@@ -11,16 +11,16 @@
                     <a class="nav-link" href="/">Esileht</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="Madis">Madis</a>
+                  <a class="nav-link" href="/view/Madis">Madis</a>
                  </li> 
                 <li class="nav-item">
-                    <a class="nav-link" href="Urmas">Urmas</a>
+                    <a class="nav-link" href="/view/Urmas">Urmas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Triin">Triin</a>
+                    <a class="nav-link" href="/view/Triin">Triin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Kaisa">Kaisa</a>
+                    <a class="nav-link" href="/view/Kaisa">Kaisa</a>
                 </li>
             </ul>
     </nav>
