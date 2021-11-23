@@ -43,10 +43,10 @@
   </p>
 
   <p>
-    <label for="sugu">Sugu</label>
+    <label for="gender">Sugu</label>
     <select
-      id="sugu"
-      name="sugu"
+      id="gender"
+      name="gender"
     >
       <option>Emane</option>
       <option>Isane</option>
