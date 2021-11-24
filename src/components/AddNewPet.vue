@@ -36,6 +36,7 @@
     <label for="age">Vanus</label>
     <input
       id="age"
+      v-model="age"
       type="number"
       name="age"
       min="0"
@@ -46,6 +47,7 @@
     <label for="gender">Sugu</label>
     <select
       id="gender"
+      v-model="gender"
       name="gender"
     >
       <option>Emane</option>
@@ -57,6 +59,7 @@
     <label for="appearance">Välimus</label>
     <input
       id="appearance"
+      v-model="appearance"
       type="text"
       name="appearance"
     >
@@ -66,6 +69,7 @@
     <label for="character">Iseloom</label>
     <input
       id="character"
+      v-model="character" 
       type="text"
       name="character"
     >
@@ -75,6 +79,7 @@
     <label for="picture">Link pildile</label>
     <input
       id="picture"
+      v-model="picture"
       type="link"
       name="picture"
     >
@@ -104,6 +109,7 @@
 import { ref,computed } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
+import { link } from "fs";
 export default {
   name: "AddNewPet",
   props: {
@@ -113,6 +119,11 @@ export default {
   setup() {
     const pet_name = ref("");
     const species = ref("");
+    const age = ref (Number);
+    const gender = ref("");
+    const appearance = ref("");
+    const character = ref("");
+    const picture = ref(link);
     const route = useRoute();
     const userId = computed(() => route.params.userId)
 
@@ -121,12 +132,11 @@ export default {
         omanik: userId.value,
         loomaNimi: pet_name.value,
         liik: species.value,
-        vanus: 115,
-        sugu: "TestX",
-        v2limus: "TestX",
-        iseloom: "TestX",
-        pilt: "TestX",
-        lisainfo: "TestX",
+        vanus: age.value,
+        sugu: gender.value,
+        v2limus: appearance.value,
+        iseloom: character.value,
+        pilt: picture.value,
       });
     }
     return {
@@ -135,9 +145,22 @@ export default {
       userId,
       pet_name,
       species,
+      age,
+      gender,
+      appearance,
+      character,
+      picture,
     };
 
 },
 
 };
 </script>
+<style scoped>
+body {
+    justify-content: space-between;
+    margin: 0px;
+    padding: 4px;
+}
+
+</style>
