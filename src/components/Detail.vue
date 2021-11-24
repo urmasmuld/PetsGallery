@@ -1,5 +1,6 @@
 <template>
   <div class="pets">
+    <router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link>
     <h1> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
 <div class="boxes">
   <div class="project"      
