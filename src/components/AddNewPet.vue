@@ -85,15 +85,6 @@
     >
   </p>
 
-    <p>
-    <label for="add">Lisainfo</label>
-    <input
-      id="add"
-      type="text"
-      name="add"
-    >
-  </p>
-
   <p>
     <input
     @click="addPet"
@@ -159,8 +150,11 @@ export default {
 <style scoped>
 body {
     justify-content: space-between;
-    margin: 0px;
     padding: 4px;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
-
+label {
+  margin-inline: 1rem;
+}
 </style>

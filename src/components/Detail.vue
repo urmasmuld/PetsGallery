@@ -21,12 +21,11 @@
     <div class="col-6 d-block m-auto">
       <div class="textbox">
           <div class="project__text">
-                <li> Omanik: <b>{{ pets.omanik }}</b></li>
                 <li>Lemmiku nimi: <b>{{ pets.loomaNimi }}</b></li> 
                 <li> Lemmiku liik: <b>{{ pets.liik }}</b> </li>
                 <li> Lemmiku vanus: <b>{{ pets.vanus }}</b> </li>
                 <li> Lemmiku sugu: <b>{{ pets.sugu }}</b> </li>
-                <li> Lemmiku v2limus: <b>{{ pets.v2limus }}</b> </li>
+                <li> Lemmiku välimus: <b>{{ pets.v2limus }}</b> </li>
                 <li> Lemmiku iseloom: <b>{{ pets.iseloom }}</b> </li>
           </div>
       </div>
