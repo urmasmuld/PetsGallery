@@ -10,13 +10,6 @@ router.get("/get-pets-data", async function(request, response) {
     response.send(result);
   });
 
-<<<<<<< HEAD
-router.get("/AddNewPet", function(request, response) {
-    response.send(petsData)
-})
-
-module.exports = router;
-=======
   router.post("/add-pets", async function (request, response) {
     if (request.body.omanik) {
       await Pets.create(request.body);
@@ -26,4 +19,3 @@ module.exports = router;
   });
   
   module.exports = router;
->>>>>>> 93e80db8280daefd004ce615670b734b3b6c29b2
