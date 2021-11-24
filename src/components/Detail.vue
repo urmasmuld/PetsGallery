@@ -1,27 +1,41 @@
 <template>
-  <div class="pets">
-    <router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link>
-    <h1> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
-<div class="boxes">
-  <div class="project"      
-  v-for="pets in petsFromServer" 
+<div class="container-fluid">
+  <div class="row pets mb-5">
+    <div class="col">
+    
+      <h1 class="m-3"> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
+      <div class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
+    </div>
+  </div>
+
+<div class="project-container">
+  <div class="row project"
+      v-for="pets in petsFromServer" 
       :key="pets" 
-      >
-    <div class="project__image"> 
-      <img v-bind:src="'/images/Lemmikloomad/'+pets.pilt" v-bind:alt="pets.loomaNimi">
-       </div>
-    <div class="project__text">
-     <li> Omanik: <b>{{ pets.omanik }}</b></li>
-  <li>Lemmiku nimi: <b>{{ pets.loomaNimi }}</b></li> 
-      <li> Lemmiku liik: <b>{{ pets.liik }}</b> </li>
-      <li> Lemmiku vanus: <b>{{ pets.vanus }}</b> </li>
-      <li> Lemmiku sugu: <b>{{ pets.sugu }}</b> </li>
-      <li> Lemmiku v2limus: <b>{{ pets.v2limus }}</b> </li>
-      <li> Lemmiku iseloom: <b>{{ pets.iseloom }}</b> </li>
+      > 
+    <div class="col-6 d-block m-auto">
+          <div class="project__image"> 
+            <img v-bind:src="'/images/Lemmikloomad/'+pets.pilt" v-bind:alt="pets.loomaNimi">
+          </div>
     </div>
+    <div class="col-6 d-block m-auto">
+      <div class="textbox">
+          <div class="project__text">
+                <li> Omanik: <b>{{ pets.omanik }}</b></li>
+                <li>Lemmiku nimi: <b>{{ pets.loomaNimi }}</b></li> 
+                <li> Lemmiku liik: <b>{{ pets.liik }}</b> </li>
+                <li> Lemmiku vanus: <b>{{ pets.vanus }}</b> </li>
+                <li> Lemmiku sugu: <b>{{ pets.sugu }}</b> </li>
+                <li> Lemmiku v2limus: <b>{{ pets.v2limus }}</b> </li>
+                <li> Lemmiku iseloom: <b>{{ pets.iseloom }}</b> </li>
+          </div>
+      </div>
     </div>
   </div>
-  </div>
+</div>
+</div>
+  
+      
 </template>
 
 <script>
@@ -61,42 +75,61 @@ getPets ()
 
 h1 {
       margin-bottom: 5rem;
+      text-transform: uppercase;
 }
-body{
-    justify-content: center;
-    margin: 0px;
-    padding: 0px;
+
+.project-container {
+  border:solid black 3px;
+  border-radius: 25px;
+  margin: 30px;
+  padding: 25px;
+  
 }
-.boxes {
-  margin: auto;
-  display: inline-block;
-}
+
 .project {
 	display:flex;
-	justify-content:space-between;
-  list-style-type: none;
+	list-style-type: none;
+  margin-left:30px;
+  margin-right:30px;
+  text-align: left;
+    
   }
 
-  .project__image, .project__text {
-    margin-right: 0px;
-    margin-bottom: 0px;
-    padding:25px;
-       
+  .project__text, .project__image {
+    padding:35px;
     }
-
-.project:nth-child(2n) {
+  
+  .project__text{
+   padding-top:50px;
+   padding-bottom:50px;
+   font-size: 1.5rem;
+   line-height: 2;
+   letter-spacing:2px;
+   
+   }
+  
+.row:nth-child(2n+0) {
   flex-direction: row-reverse;
+  text-align: right;
 }
 
 img {
-    vertical-align: middle;
-    border-style: none;
-    height: 200px;
-    width: auto;
-    border: 2px solid rgb(79, 48, 190);
-    border-top-left-radius: 15%;
-    border-bottom-right-radius: 15%;
-
+    
+    display: block;
+    justify-content:center;
+    align-items:center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border: 3px solid rgb(79, 48, 190);
+    border-radius: 25px;
+    /* border-top-left-radius: 15%;
+    border-bottom-right-radius: 15%; */
+}
+.textbox{
+  border: solid orange 3px;
+  border-radius: 25px;
 }
 
 </style>

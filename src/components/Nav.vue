@@ -43,9 +43,9 @@ h3{
 }
 .navbar {
   padding:30px;
-  padding-top: 50px;
-  padding-bottom:50px;
-  margin-bottom:100px;
+  padding-top: 150px;
+  padding-bottom:40px;
+  margin-bottom:75px;
   font-size: 32px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -57,6 +57,7 @@ h3{
   
 color:black;
 transition: 1s;
+
 
 }
 
