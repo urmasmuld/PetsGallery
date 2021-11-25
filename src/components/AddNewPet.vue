@@ -129,6 +129,13 @@ export default {
         iseloom: character.value,
         pilt: picture.value,
       });
+      pet_name.value = "";
+      species.value = "";
+      age.value = "";
+      gender.value = "";
+      appearance.value = "";
+      character.value = "";
+      picture.value = "";
     }
     return {
       addPet,
