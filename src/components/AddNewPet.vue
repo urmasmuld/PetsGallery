@@ -86,11 +86,11 @@
   </p>
 
   <p>
-    <input
+    <button
     @click="addPet"
       type="submit"
       value="Submit"
-    >
+    >Salvesta</button>
   </p>
 
 </div>
@@ -163,5 +163,23 @@ body {
 }
 label {
   margin-inline: 1rem;
+  float: left; 
+  width: 150px; 
+  display: inline-block; 
+  text-align: left; 
+}
+.addnew {
+  width: 600px; 
+  border: solid orange 3px;
+  border-radius: 25px;
+  margin: auto;
+  padding: 25px;
+  }
+p {
+  display: flex; 
+}
+button {
+    border: 3px solid rgb(79, 48, 190);
+    border-radius: 25px;
 }
 </style>
