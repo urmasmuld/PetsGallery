@@ -76,12 +76,18 @@
   </p>
 
     <p>
-    <label for="picture">Link pildile</label>
+    <label for="picture">Pilt</label>
     <input
       id="picture"
-      v-model="picture"
-      type="link"
+      type="file"
       name="picture"
+      @change="convert"
+    >
+    <input
+      id="imgdata" 
+      type="hidden" 
+      v-model="imgdata" 
+      name="imgdata" 
     >
   </p>
 
@@ -117,6 +123,49 @@ export default {
     const picture = ref(link);
     const route = useRoute();
     const userId = computed(() => route.params.userId)
+    const imgdata = ref("");
+
+// Base64/image start
+			function convert() {
+				var data = document.getElementById("picture").files[0];
+					loadImageFileAsURL(data);
+			}
+			
+			async function loadImageFileAsURL(fileToLoad){
+				var fileReader = new FileReader();
+				fileReader.onload = async function(fileLoadedEvent) {
+          const base65 = await resizeBase64Img(fileLoadedEvent.target.result, 250, 250)
+					imgdata.value = base65; // <--- data: base64
+          document.getElementById("imgdata").innerHTML = imgdata.value;
+          console.log(imgdata.value)
+				}
+
+				fileReader.readAsDataURL(fileToLoad);
+			}
+// Base64/image END
+// Resize image
+function resizeBase64Img(base64, newWidth, newHeight) {
+    return new Promise(function (resolve) {
+        var canvas = document.createElement('canvas');
+        canvas.width = newWidth;
+        canvas.height = newHeight;
+        var context = canvas.getContext('2d');
+        var img = document.createElement('img');
+        img.src = base64;
+        img.onload = function () {
+            var iw = img.width;
+            var ih = img.height;
+            var scale = Math.min(newWidth / iw, newHeight / ih);
+            var iwScaled = iw * scale;
+            var ihScaled = ih * scale;
+            canvas.width = iwScaled;
+            canvas.height = ihScaled;
+            context.drawImage(img, 0, 0, iwScaled, ihScaled);
+            resolve(canvas.toDataURL('image/jpeg', 0.5));
+        };
+    });
+}
+// Resize image END
 
     async function addPet() {
       await axios.post("/api/add-pets", {
@@ -127,7 +176,7 @@ export default {
         sugu: gender.value,
         v2limus: appearance.value,
         iseloom: character.value,
-        pilt: picture.value,
+        pilt: imgdata.value,
       });
       pet_name.value = "";
       species.value = "";
@@ -135,10 +184,12 @@ export default {
       gender.value = "";
       appearance.value = "";
       character.value = "";
-      picture.value = "";
+      imgdata.value = "";
     }
+
     return {
       addPet,
+      resizeBase64Img,
       route,
       userId,
       pet_name,
@@ -148,6 +199,8 @@ export default {
       appearance,
       character,
       picture,
+      convert,
+      imgdata,
     };
 
 },
