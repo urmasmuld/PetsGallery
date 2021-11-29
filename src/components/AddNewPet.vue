@@ -1,5 +1,7 @@
 <template>
 <div class="addnew">
+
+  
   <p>
     <label for="name">Omanik</label>
 
@@ -16,9 +18,9 @@
     <label for="pet_name">Looma nimi</label>
     <input
       id="pet_name"
-      v-model="pet_name"
+      v-model="state.pet_name"
       type="text"
-      name="pet_name"
+      name="pet_name" required
     >
   </p>
 
@@ -26,10 +28,9 @@
     <label for="species">Liik</label>
     <input
       id="species"
-      v-model="species"
+      v-model="state.species"
       type="text"
-      name="species"
-    >
+      name="species" required>
   </p>
 
   <p>
@@ -39,7 +40,7 @@
       v-model="age"
       type="number"
       name="age"
-      min="0"
+      min="0" required
     >
   </p>
 
@@ -48,7 +49,7 @@
     <select
       id="gender"
       v-model="gender"
-      name="gender"
+      name="gender" required
     >
       <option>Emane</option>
       <option>Isane</option>
@@ -61,7 +62,7 @@
       id="appearance"
       v-model="appearance"
       type="text"
-      name="appearance"
+      name="appearance" required
     >
   </p>
   
@@ -71,7 +72,7 @@
       id="character"
       v-model="character" 
       type="text"
-      name="character"
+      name="character" required
     >
   </p>
 
@@ -84,6 +85,16 @@
       name="picture"
     >
   </p>
+<p
+  v-for="error of v$.$errors"
+  :key="error.$uid"
+>
+<strong>{{ error.$validator }}</strong>
+<small> on property</small>
+<strong>{{ error.$property }}</strong>
+<small> says:</small>
+<strong>{{ error.$message }}</strong>
+</p>
 
   <p>
     <input
@@ -97,10 +108,16 @@
 </template>
 
 <script>
-import { ref,computed } from "vue";
+import { ref,computed, reactive } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { link } from "fs";
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
+import { required, helpers } from '@vuelidate/validators'
+
+
+
 export default {
   name: "AddNewPet",
   props: {
@@ -108,6 +125,32 @@ export default {
   },
 
   setup() {
+
+    const validations = {
+    pet_name: {
+    required: helpers.withMessage('See väli ei saa olla tühi', required)
+  }
+}
+
+    const state = reactive({
+      pet_name: '',
+      species: '',
+      age: '',
+      gender: '',
+      appearance: '',
+      character:'',
+    })
+
+    const rules = {
+      pet_name: { required }, 
+      species: { required }, 
+      age: {required },
+      gender: { required },
+      appearance: { required },
+      character:{ required },
+    }
+
+    const v$ = useVuelidate(rules, state)
     const pet_name = ref("");
     const species = ref("");
     const age = ref (Number);
@@ -119,6 +162,13 @@ export default {
     const userId = computed(() => route.params.userId)
 
     async function addPet() {
+     
+    const isFormCorrect = await this.v$.$validate() //valideerib vormi enne saatmist (pärast submit nupu vajutamist)
+    
+    console.log(isFormCorrect) //kontrolliks väljalogimine - true/false
+    console.log(v$.$errors) 
+
+    if (!isFormCorrect) return //kui vormil ei ole nõutud väljad täidetd, siis edasi ei tee  ehk ei lisa uut looma baasi
       await axios.post("/api/add-pets", {
         omanik: userId.value,
         loomaNimi: pet_name.value,
@@ -148,6 +198,8 @@ export default {
       appearance,
       character,
       picture,
+      v$,
+      state,
     };
 
 },
