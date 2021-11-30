@@ -134,8 +134,9 @@ export default {
 			async function loadImageFileAsURL(fileToLoad){
 				var fileReader = new FileReader();
 				fileReader.onload = async function(fileLoadedEvent) {
-          const base65 = await resizeBase64Img(fileLoadedEvent.target.result, 250, 250)
-					imgdata.value = base65; // <--- data: base64
+          const base64 = await resizeBase64Img(fileLoadedEvent.target.result, 500, 500)
+					// imgdata.value = fileLoadedEvent.target.result; // <--- data: base64
+					imgdata.value = base64; // <--- data: base64
           document.getElementById("imgdata").innerHTML = imgdata.value;
           console.log(imgdata.value)
 				}
@@ -161,7 +162,7 @@ function resizeBase64Img(base64, newWidth, newHeight) {
             canvas.width = iwScaled;
             canvas.height = ihScaled;
             context.drawImage(img, 0, 0, iwScaled, ihScaled);
-            resolve(canvas.toDataURL('image/jpeg', 0.5));
+            resolve(canvas.toDataURL('image/jpeg', 0.7));
         };
     });
 }
