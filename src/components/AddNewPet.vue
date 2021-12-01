@@ -86,11 +86,11 @@
   </p>
 
   <p>
-    <input
+    <button
     @click="addPet"
       type="submit"
       value="Submit"
-    >
+    > Salvesta </button>
   </p>
 
 </div>
@@ -101,6 +101,7 @@ import { ref,computed } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { link } from "fs";
+import router from "./../router"
 export default {
   name: "AddNewPet",
   props: {
@@ -129,13 +130,15 @@ export default {
         iseloom: character.value,
         pilt: picture.value,
       });
-      pet_name.value = "";
+
+      router.push({ name: 'detail', params: {userId: userId.value}});
+      /* pet_name.value = "";
       species.value = "";
       age.value = "";
       gender.value = "";
       appearance.value = "";
       character.value = "";
-      picture.value = "";
+      picture.value = ""; */
     }
     return {
       addPet,
