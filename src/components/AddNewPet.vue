@@ -1,6 +1,5 @@
 <template>
 <div class="addnew">
-
   
   <p>
     <label for="name">Omanik</label>
@@ -21,17 +20,24 @@
       v-model="state.pet_name"
       type="text"
       name="pet_name"
-      >
-
-  </p>
-
-   <p>
+      
+    >
+      <span v-if="v$.pet_name.$error">
+        {{ v$.pet_name.$errors[0].$message }}
+        </span>
+        
+    </p>
+   
+     <p>
     <label for="species">Liik</label>
     <input
       id="species"
       v-model="state.species"
       type="text"
-      name="species" required>
+      name="species">
+      <span v-if="v$.species.$error">
+        {{ v$.species.$errors[0].$message }}
+      </span>
   </p>
 
   <p>
@@ -41,8 +47,11 @@
       v-model="state.age"
       type="number"
       name="age"
-      min="0" required
+     
     >
+    <span v-if="v$.age.$error">
+        {{ v$.age.$errors[0].$message }}
+      </span>
   </p>
 
   <p>
@@ -50,21 +59,28 @@
     <select
       id="gender"
       v-model="state.gender"
-      name="gender" required
+      name="gender"
     >
       <option>Emane</option>
       <option>Isane</option>
     </select>
+    <span v-if="v$.gender.$error">
+        {{ v$.gender.$errors[0].$message }}
+      </span>
   </p>
 
     <p>
+
     <label for="appearance">Välimus</label>
     <input
       id="appearance"
       v-model="state.appearance"
       type="text"
-      name="appearance" required
+      name="appearance"
     >
+    <span v-if="v$.appearance.$error">
+        {{ v$.appearance.$errors[0].$message }}
+      </span>
   </p>
   
     <p>
@@ -73,8 +89,11 @@
       id="character"
       v-model="state.character" 
       type="text"
-      name="character" required
+      name="character"
     >
+    <span v-if="v$.character.$error">
+        {{ v$.character.$errors[0].$message }}
+      </span>
   </p>
 
     <p>
@@ -85,39 +104,27 @@
       type="link"
       name="picture"
     >
-  </p>
-
-<p
-  v-for="error of v$.$errors"
-  :key="error.$uid"
->
-<strong>{{ error.$validator }}</strong>
-<small> on property</small>
-<strong>{{ error.$property }}</strong>
-<small> says:</small>
-<strong>{{ error.$message }}</strong>
-</p>
+    </p>
 
   <p>
-    <input
+    <button
     @click="addPet"
       type="submit"
       value="Submit"
-    >
+      class="btn btn-dark p-2"
+    >Lisa lemmik</button>
   </p>
 
 </div>
 </template>
 
 <script>
-import { ref,computed, reactive } from "vue";
+import { ref, computed, reactive } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { link } from "fs";
-import useVuelidate from '@vuelidate/core'
-import { required, helpers } from '@vuelidate/validators'
-
-
+import useVuelidate from "@vuelidate/core";
+import { required, helpers, } from "@vuelidate/validators";
 
 export default {
   name: "AddNewPet",
@@ -126,55 +133,44 @@ export default {
   },
 
   setup() {
-
-//     const validations = {
-//     pet_name: {
-//     required: helpers.withMessage('See väli ei saa olla tühi', required)
-//   }
-// }
-
     const state = reactive({
-      pet_name: '',
-      species: '',
-      age: '',
-      gender: '',
-      appearance: '',
-      character:'',
-    })
+      pet_name: "",
+      species: "",
+      age: "",
+      gender: "",
+      appearance: "",
+      character: "",
+    });
 
-    const rules = {
-      pet_name: {
-        required: helpers.withMessage('See väli ei saa olla tühi', required)
-        },
-        
-      species: { required: helpers.withMessage('See väli ei saa olla tühi', required)
-        },
-      age: {required },
-      gender: { required },
-      appearance: { required },
-      character:{ required },
-    }
+    const rules =  {
+      pet_name: { required: helpers.withMessage("Looma nimi on kohustuslik, palun täida!", required)},
+      species: { required: helpers.withMessage("Loomaliik on kohustuslik, palun täida!", required)},
+      age: { required: helpers.withMessage("Vanus on kohustuslik, palun täida!", required)},
+      gender: { required: helpers.withMessage("Sugu on kohustuslik, palun vali!", required)},
+      appearance: { required: helpers.withMessage("Välimus on kohustuslik, palun täida!", required)},
+      character: { required: helpers.withMessage("Iseloom on kohustuslik, palun täida!", required)},
+    };
 
-    // const = helpers;
     const v$ = useVuelidate(rules, state);
     const pet_name = ref("");
     const species = ref("");
-    const age = ref (Number);
+    const age = ref(Number);
     const gender = ref("");
     const appearance = ref("");
     const character = ref("");
     const picture = ref(link);
     const route = useRoute();
-    const userId = computed(() => route.params.userId)
+    const userId = computed(() => route.params.userId);
 
-    async function addPet() { //async submitForm () 
-     
-    const isFormCorrect = await this.v$.$validate() //valideerib vormi enne saatmist (pärast submit nupu vajutamist)
-    
-    console.log(isFormCorrect) //kontrolliks väljalogimine - true/false
-    console.log(v$.$errors) 
+    async function addPet() {
+      //async submitForm ()
 
-    if (!isFormCorrect) return //kui vormil ei ole nõutud väljad täidetd, siis uut looma baasi ei lisa/ei submitti
+      const isFormCorrect = await this.v$.$validate(); //valideerib vormi enne saatmist (pärast submit nupu vajutamist)
+
+      console.log(isFormCorrect); //kontrolliks väljalogimine - true/false
+      // console.log(v$.$errors);
+
+      if (!isFormCorrect) return; //kui vormil ei ole nõutud väljad täidetd, siis uut looma baasi ei lisa/ei submitti
 
       await axios.post("/api/add-pets", {
         omanik: userId.value,
@@ -195,6 +191,7 @@ export default {
       character.value = "";
       picture.value = "";
     }
+
     return {
       addPet,
       route,
@@ -208,22 +205,25 @@ export default {
       picture,
       v$,
       state,
-      // validations
-      
     };
-
-},
-
+  },
 };
+
 </script>
 <style scoped>
 body {
-    justify-content: space-between;
-    padding: 4px;
-    margin-top: 0;
-    margin-bottom: 1rem;
+  justify-content: space-between;
+  padding: 4px;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 label {
   margin-inline: 1rem;
 }
+
+span {
+  color: red;
+  padding: 15px;
+ }
+
 </style>
