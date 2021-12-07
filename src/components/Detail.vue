@@ -15,7 +15,7 @@
       > 
     <div class="col-6 d-block m-auto">
           <div class="project__image"> 
-            <img v-bind:src="pets.pilt" v-bind:alt="pets.loomaNimi">
+            <img v-bind:src="pets.pilt64" v-bind:alt="pets.loomaNimi">
           </div>
     </div>
     <div class="col-6 d-block m-auto">
