@@ -124,6 +124,7 @@ export default {
     const route = useRoute();
     const userId = computed(() => route.params.userId)
     const imgdata = ref("");
+    const imgdata1 = imgdata;
 
 // Base64/image start
 			function convert() {
@@ -177,7 +178,8 @@ function resizeBase64Img(base64, newWidth, newHeight) {
         sugu: gender.value,
         v2limus: appearance.value,
         iseloom: character.value,
-        pilt: imgdata.value,
+        pilt: imgdata1.value,
+        pilt64: imgdata.value,
       });
       pet_name.value = "";
       species.value = "";
@@ -202,6 +204,7 @@ function resizeBase64Img(base64, newWidth, newHeight) {
       picture,
       convert,
       imgdata,
+      imgdata1,
     };
 
 },
