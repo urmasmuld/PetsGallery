@@ -124,50 +124,6 @@ export default {
     const route = useRoute();
     const userId = computed(() => route.params.userId)
     const imgdata = ref("");
-    const imgdata1 = imgdata;
-
-// Base64/image start
-			function convert() {
-				var data = document.getElementById("picture").files[0];
-					loadImageFileAsURL(data);
-			}
-			
-			async function loadImageFileAsURL(fileToLoad){
-				var fileReader = new FileReader();
-				fileReader.onload = async function(fileLoadedEvent) {
-          const base64 = await resizeBase64Img(fileLoadedEvent.target.result, 500, 500)
-					// imgdata.value = fileLoadedEvent.target.result; // <--- data: base64
-					imgdata.value = base64; // <--- data: base64
-          document.getElementById("imgdata").innerHTML = imgdata.value;
-          console.log(imgdata.value)
-				}
-
-				fileReader.readAsDataURL(fileToLoad);
-			}
-// Base64/image END
-// Resize image
-function resizeBase64Img(base64, newWidth, newHeight) {
-    return new Promise(function (resolve) {
-        var canvas = document.createElement('canvas');
-        canvas.width = newWidth;
-        canvas.height = newHeight;
-        var context = canvas.getContext('2d');
-        var img = document.createElement('img');
-        img.src = base64;
-        img.onload = function () {
-            var iw = img.width;
-            var ih = img.height;
-            var scale = Math.min(newWidth / iw, newHeight / ih);
-            var iwScaled = iw * scale;
-            var ihScaled = ih * scale;
-            canvas.width = iwScaled;
-            canvas.height = ihScaled;
-            context.drawImage(img, 0, 0, iwScaled, ihScaled);
-            resolve(canvas.toDataURL('image/jpeg', 0.7));
-        };
-    });
-}
-// Resize image END
 
     async function addPet() {
       await axios.post("/api/add-pets", {
@@ -178,8 +134,7 @@ function resizeBase64Img(base64, newWidth, newHeight) {
         sugu: gender.value,
         v2limus: appearance.value,
         iseloom: character.value,
-        pilt: imgdata1.value,
-        pilt64: imgdata.value,
+        pilt: imgdata.value,
       });
       pet_name.value = "";
       species.value = "";
@@ -192,7 +147,6 @@ function resizeBase64Img(base64, newWidth, newHeight) {
 
     return {
       addPet,
-      resizeBase64Img,
       route,
       userId,
       pet_name,
@@ -202,9 +156,7 @@ function resizeBase64Img(base64, newWidth, newHeight) {
       appearance,
       character,
       picture,
-      convert,
       imgdata,
-      imgdata1,
     };
 
 },
