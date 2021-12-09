@@ -170,25 +170,26 @@ export default {
       console.log(isFormCorrect); //kontrolliks väljalogimine - true/false
       // console.log(v$.$errors);
 
-      if (!isFormCorrect) return; //kui vormil ei ole nõutud väljad täidetd, siis uut looma baasi ei lisa/ei submitti
+      if (!isFormCorrect) {
+        return } 
 
       await axios.post("/api/add-pets", {
         omanik: userId.value,
-        loomaNimi: pet_name.value,
-        liik: species.value,
-        vanus: age.value,
-        sugu: gender.value,
-        v2limus: appearance.value,
-        iseloom: character.value,
+        loomaNimi: state.pet_name,
+        liik: state.species,
+        vanus: state.age,
+        sugu: state.gender,
+        v2limus: state.appearance,
+        iseloom: state.character,
         pilt: picture.value,
       });
 
-      pet_name.value = "";
-      species.value = "";
-      age.value = "";
-      gender.value = "";
-      appearance.value = "";
-      character.value = "";
+      state.pet_name = "";
+      state.species = "";
+      state.age = "";
+      state.gender = "";
+      state.appearance = "";
+      state.character = "";
       picture.value = "";
     }
 
