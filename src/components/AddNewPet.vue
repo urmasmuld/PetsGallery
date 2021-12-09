@@ -126,6 +126,7 @@ import { link } from "fs";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers, } from "@vuelidate/validators";
 
+import router from "./../router"
 export default {
   name: "AddNewPet",
   props: {
@@ -184,13 +185,14 @@ export default {
         pilt: picture.value,
       });
 
-      state.pet_name = "";
-      state.species = "";
-      state.age = "";
-      state.gender = "";
-      state.appearance = "";
-      state.character = "";
-      picture.value = "";
+      router.push({ name: 'detail', params: {userId: userId.value}});
+      /* pet_name.value = "";
+      species.value = "";
+      age.value = "";
+      gender.value = "";
+      appearance.value = "";
+      character.value = "";
+      picture.value = ""; */
     }
 
     return {

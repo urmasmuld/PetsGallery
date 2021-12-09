@@ -1,6 +1,6 @@
 <template>
 
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light sticky" >
         <span class="navbar-text">
            <h3>Lemmikloomade galerii</h3>
         </span>
@@ -33,18 +33,27 @@ export default {
     msg: String,
   },
 };
+
+
 </script>
 
 <style scoped>
+.sticky {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+}
+
 
 h3{
-  font-weight: 700px;
+  font-weight: bold;
   font-size: 40px;
 }
 .navbar {
   padding:30px;
-  padding-top: 150px;
-  padding-bottom:40px;
+  padding-top: 10px;
+  padding-bottom:10px;
   margin-bottom:75px;
   font-size: 32px;
   letter-spacing: 2px;
