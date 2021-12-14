@@ -78,16 +78,10 @@
     <p>
     <label for="picture">Pilt</label>
     <input
-      id="picture"
       type="file"
+      id="picture"
       name="picture"
-      @change="convert"
-    >
-    <input
-      id="imgdata" 
-      type="hidden" 
-      v-model="imgdata" 
-      name="imgdata" 
+      @change="onFileSelected"
     >
   </p>
 
@@ -107,8 +101,23 @@ import { ref,computed } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { link } from "fs";
+let myVar = ''
+
 export default {
   name: "AddNewPet",
+  data () {
+    return {
+      selectedFile: null
+    }
+  },
+    methods: {
+        onFileSelected(event) {
+          console.log(event)
+          this.selectedFile = event.target.files[0]
+          myVar = this.selectedFile.name
+          // console.log(myVar)
+        }
+    },
   props: {
     title: String,
   },
@@ -134,7 +143,7 @@ export default {
         sugu: gender.value,
         v2limus: appearance.value,
         iseloom: character.value,
-        pilt: imgdata.value,
+        pilt: myVar,
       });
       pet_name.value = "";
       species.value = "";
