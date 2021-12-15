@@ -30,7 +30,18 @@
           </div>
            <div class="row">
             <div class="col-6">
-            <button @click="updatePets(pets._id)" class="btn btn-dark mx-5 p-3 mb-5">Muuda lemmiklooma infot</button>
+            <button class="btn btn-dark mx-5 p-3 mb-5">
+              <router-link :to="{ name: 'EditPet', params: { 
+              userId: userId,
+              pet_id: pets._id,
+              pet_name: pets.loomaNimi,
+              species: pets.liik,
+              age: pets.vanus,
+              gender: pets.sugu,
+              appearance: pets.v2limus,
+              character: pets.iseloom
+               }}" style="text-decoration: none;color: inherit;">Muuda lemmiklooma infot</router-link>
+               </button>
             </div>
             <div class="col-6">
             <button @click="deletePets(pets._id)" class="btn btn-dark mx-5 p-3 mb-5">Kustuta lemmikloom</button>

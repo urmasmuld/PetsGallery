@@ -24,5 +24,26 @@ router.get("/get-pets-data", async function(request, response) {
   console.log("Deleting pets...");
   response.send({});
 });
-  
-  module.exports = router;
+
+router.get("/get-pets", async function (request, response) {
+  const result = await Pets.find();
+  console.log(result);
+  response.send(result);
+});
+
+router.post("/edit-pet/:id", async function (request, response) {
+  await Pets.updateOne(
+    { _id: request.params.id }, 
+    { $set: { 
+      omanik: request.body.userId,
+      loomaNimi: request.body.pet_name,
+      liik: request.body.species,
+      vanus: request.body.age,
+      sugu: request.body.gender,
+      v2limus: request.body.appearance,
+      iseloom: request.body.character    
+    } } 
+    );
+});
+
+module.exports = router;
