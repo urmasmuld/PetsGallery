@@ -49,7 +49,7 @@ h3{
 }
 .navbar {
   padding:30px;
-  padding-top: 150px;
+  padding-top: 80px;
   padding-bottom:40px;
   margin-bottom:75px;
   font-size: 32px;
