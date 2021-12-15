@@ -7,7 +7,6 @@
       v-model="pet_name"
       type="text"
       name="pet_name"
-      
     >
     </p>
    
@@ -66,7 +65,7 @@
 
   <p>
     <button
-    @click="editPet"
+    @click.prevent="editPet"
       type="submit"
       value="Submit"
     >Salvesta</button>
@@ -76,7 +75,7 @@
 </template>
 
 <script>
-import { ref,computed } from "vue";
+import { computed } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 // import { link } from "fs";
@@ -103,17 +102,17 @@ export default {
 
   setup() {
     const pet_id = computed(() => route.params.pet_id);
-    const pet_name = "";
-    // const pet_name = computed(() => route.params.pet_name);
-    const species = ref("");
-    // const species = computed(() => route.params.species);
-    const age = ref("");
-    // const age = computed(() => route.params.age);
-    const gender = ref("");
-    // const gender = computed(() => route.params.gender);
-    const appearance = ref("");
-    // const appearance = computed(() => route.params.appearance);
-    const character = ref("");
+    // const pet_name = ref("");
+    // // const pet_name = computed(() => route.params.pet_name);
+    // const species = ref("");
+    // // const species = computed(() => route.params.species);
+    // const age = ref("");
+    // // const age = computed(() => route.params.age);
+    // const gender = ref("");
+    // // const gender = computed(() => route.params.gender);
+    // const appearance = ref("");
+    // // const appearance = computed(() => route.params.appearance);
+    // const character = ref("");
     // const character = computed(() => route.params.character);
     // const picture = ref(link);
     const route = useRoute();
@@ -121,7 +120,14 @@ export default {
 
 
     async function editPet() {
+        var pet_name = document.getElementById("pet_name").value;
+        var species = document.getElementById("species").value;
+        var age = document.getElementById("age").value;
+        var gender = document.getElementById("gender").value;
+        var appearance = document.getElementById("appearance").value;
+        var character = document.getElementById("character").value;
       await axios.post("/api/edit-pet", {
+        pet_id: pet_id.value,
         omanik: userId.value,
         loomaNimi: pet_name,
         liik: species,

@@ -27,18 +27,21 @@ router.get("/get-pets-data", async function(request, response) {
 
 router.post("/edit-pet/", async function (request, response) {
   console.log(request.body)
-  // await Pets.updateOne(
-  //   { _id: request.params.id }, 
-  //   { $set: { 
-  //     omanik: request.body.userId,
-  //     loomaNimi: request.body.pet_name,
-  //     liik: request.body.species,
-  //     vanus: request.body.age,
-  //     sugu: request.body.gender,
-  //     v2limus: request.body.appearance,
-  //     iseloom: request.body.character    
-  //   } } 
-  //   );
+  if (request.body.pet_id) {
+  await Pets.updateOne(
+    { _id: request.body.pet_id }, 
+    { $set: { 
+      loomaNimi: request.body.loomaNimi,
+      liik: request.body.liik,
+      vanus: request.body.vanus,
+      sugu: request.body.sugu,
+      v2limus: request.body.v2limus,
+      iseloom: request.body.iseloom,
+    } } 
+    );
+    console.log("Muuda Pet...");
+  }
+  response.send("done");
 });
 
 module.exports = router;
