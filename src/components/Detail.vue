@@ -35,7 +35,7 @@
             <div class="col-6">
             <button @click="deletePets(pets._id)" class="btn btn-dark mx-5 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
-        </div>          
+        </div>
       </div>
     </div>
   </div>
@@ -69,7 +69,6 @@ export default {
                 console.log('petsByOwner: ', petsByOwner)
             }
 getPets ()
-
 
 // Delete
     async function deletePets(id) {

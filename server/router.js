@@ -20,8 +20,9 @@ router.get("/get-pets-data", async function(request, response) {
 
   // Delete
   router.get("/delete-pets/:id", async function (request, response) {
-    await Pets.deleteOne({ _id: request.params.id }); 
-    console.log("Deleting pets...");
-    response.send({});
-  });  
+  await Pets.deleteOne({ _id: request.params.id }); 
+  console.log("Deleting pets...");
+  response.send({});
+});
+  
   module.exports = router;
