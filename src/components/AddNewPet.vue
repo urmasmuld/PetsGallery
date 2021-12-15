@@ -1,6 +1,5 @@
 <template>
 <div class="addnew">
-  
   <p>
     <label for="name">Omanik</label>
 
@@ -97,14 +96,14 @@
   </p>
 
     <p>
-    <label for="picture">Link pildile</label>
+    <label for="picture">Pilt</label>
     <input
+      type="file"
       id="picture"
-      v-model="picture"
-      type="link"
       name="picture"
+      @change="onFileSelected"
     >
-    </p>
+  </p>
 
   <p>
     <button
@@ -118,16 +117,31 @@
 </template>
 
 <script>
-import { ref, computed, reactive } from "vue";
+import { ref,computed, reactive } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { link } from "fs";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers, } from "@vuelidate/validators";
-
 import router from "./../router"
+
+let myVar = ''
+
 export default {
   name: "AddNewPet",
+  data () {
+    return {
+      selectedFile: null
+    }
+  },
+    methods: {
+        onFileSelected(event) {
+          console.log(event)
+          this.selectedFile = event.target.files[0]
+          myVar = this.selectedFile.name
+          // console.log(myVar)
+        }
+    },
   props: {
     title: String,
   },
@@ -141,7 +155,6 @@ export default {
       appearance: "",
       character: "",
     });
-
     const rules =  {
       pet_name: { required: helpers.withMessage("Looma nimi on kohustuslik, palun täida!", required)},
       species: { required: helpers.withMessage("Loomaliik on kohustuslik, palun täida!", required)},
@@ -164,15 +177,11 @@ export default {
 
     async function addPet() {
       //async submitForm ()
-
       const isFormCorrect = await this.v$.$validate(); //valideerib vormi enne saatmist (pärast submit nupu vajutamist)
-
       console.log(isFormCorrect); //kontrolliks väljalogimine - true/false
       // console.log(v$.$errors);
-
       if (!isFormCorrect) {
         return } 
-
       await axios.post("/api/add-pets", {
         omanik: userId.value,
         loomaNimi: state.pet_name,
@@ -181,17 +190,16 @@ export default {
         sugu: state.gender,
         v2limus: state.appearance,
         iseloom: state.character,
-        pilt: picture.value,
+        pilt: myVar,
       });
-
       router.push({ name: 'detail', params: {userId: userId.value}});
-      /* pet_name.value = "";
-      species.value = "";
-      age.value = "";
-      gender.value = "";
-      appearance.value = "";
-      character.value = "";
-      picture.value = ""; */
+      // pet_name.value = "";
+      // species.value = "";
+      // age.value = "";
+      // gender.value = "";
+      // appearance.value = "";
+      // character.value = "";
+      // imgdata.value = "";
     }
 
     return {
@@ -208,9 +216,10 @@ export default {
       v$,
       state,
     };
-  },
-};
 
+},
+
+};
 </script>
 <style scoped>
 body {
@@ -240,10 +249,8 @@ button {
     border: 3px solid rgb(79, 48, 190);
     border-radius: 25px;
 }
-
 span {
   color: red;
   padding: 15px;
  }
-
 </style>
