@@ -95,14 +95,6 @@ export default {
               character:this.$route.params.character,
          }
     },
-    methods:{
-    onChange: function(e){
-        var id = e.target.value;
-        var name = e.target.options[e.target.options.selectedIndex].text;
-        console.log('id ',id );
-        console.log('name ',name );
-    },
-    },
   name: "editPet",
   props: {
     title: String,
