@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { ref,computed } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 // import { link } from "fs";
@@ -85,6 +85,24 @@ import router from "./../router"
 // let myVar = ''
 
 export default {
+        data(){
+        return{
+              pet_name:this.$route.params.pet_name,
+              species:this.$route.params.species,
+              age:this.$route.params.age,
+              gender:this.$route.params.gender,
+              appearance:this.$route.params.appearance,
+              character:this.$route.params.character,
+         }
+    },
+    methods:{
+    onChange: function(e){
+        var id = e.target.value;
+        var name = e.target.options[e.target.options.selectedIndex].text;
+        console.log('id ',id );
+        console.log('name ',name );
+    },
+    },
   name: "editPet",
   props: {
     title: String,
@@ -93,12 +111,18 @@ export default {
 
   setup() {
     const pet_id = computed(() => route.params.pet_id);
-    const pet_name = computed(() => route.params.pet_name);
-    const species = computed(() => route.params.species);
-    const age = computed(() => route.params.age);
-    const gender = computed(() => route.params.gender);
-    const appearance = computed(() => route.params.appearance);
-    const character = computed(() => route.params.character);
+    const pet_name = "";
+    // const pet_name = computed(() => route.params.pet_name);
+    const species = ref("");
+    // const species = computed(() => route.params.species);
+    const age = ref("");
+    // const age = computed(() => route.params.age);
+    const gender = ref("");
+    // const gender = computed(() => route.params.gender);
+    const appearance = ref("");
+    // const appearance = computed(() => route.params.appearance);
+    const character = ref("");
+    // const character = computed(() => route.params.character);
     // const picture = ref(link);
     const route = useRoute();
     const userId = computed(() => route.params.userId);
@@ -123,12 +147,12 @@ export default {
       route,
       userId,
       pet_id,
-      pet_name,
-      species,
-      age,
-      gender,
-      appearance,
-      character,
+    //   pet_name,
+    //   species,
+    //   age,
+    //   gender,
+    //   appearance,
+    //   character,
     //   picture,
     //   v$,
     //   state,
