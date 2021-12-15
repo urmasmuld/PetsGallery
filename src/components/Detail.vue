@@ -28,6 +28,14 @@
                 <li> Lemmiku välimus: <b>{{ pets.v2limus }}</b> </li>
                 <li> Lemmiku iseloom: <b>{{ pets.iseloom }}</b> </li>
           </div>
+           <div class="row">
+            <div class="col-6">
+            <button @click="updatePets(pets._id)" class="btn btn-dark mx-5 p-3 mb-5">Muuda lemmiklooma infot</button>
+            </div>
+            <div class="col-6">
+            <button @click="deletePets(pets._id)" class="btn btn-dark mx-5 p-3 mb-5">Kustuta lemmikloom</button>
+            </div>
+        </div>          
       </div>
     </div>
   </div>
@@ -62,9 +70,17 @@ export default {
             }
 getPets ()
 
+
+// Delete
+    async function deletePets(id) {
+      await axios.get("/api/delete-pets/" + id);
+      await getPets();
+    }
+
     return {
       userId,
       petsFromServer,
+      deletePets,
     };
   },
 };
