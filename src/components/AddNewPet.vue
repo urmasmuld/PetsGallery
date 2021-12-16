@@ -98,10 +98,22 @@
     <p>
     <label for="picture">Pilt</label>
     <input
-      type="file"
       id="picture"
+      type="file"
       name="picture"
-      @change="onFileSelected"
+      @change="convert"
+    >
+    <input
+      id="imgdata" 
+      type="hidden" 
+      v-model="imgdata" 
+      name="imgdata" 
+    >
+    <input
+      id="imgdata_s" 
+      type="hidden" 
+      v-model="imgdata_s" 
+      name="imgdata_s" 
     >
   </p>
 
@@ -125,23 +137,10 @@ import useVuelidate from "@vuelidate/core";
 import { required, helpers, } from "@vuelidate/validators";
 import router from "./../router"
 
-let myVar = ''
+// let myVar = ''
 
 export default {
   name: "AddNewPet",
-  data () {
-    return {
-      selectedFile: null
-    }
-  },
-    methods: {
-        onFileSelected(event) {
-          console.log(event)
-          this.selectedFile = event.target.files[0]
-          myVar = this.selectedFile.name
-          // console.log(myVar)
-        }
-    },
   props: {
     title: String,
   },
@@ -174,6 +173,52 @@ export default {
     const picture = ref(link);
     const route = useRoute();
     const userId = computed(() => route.params.userId);
+    const imgdata = ref("");
+    const imgdata_s = ref("");
+
+// Base64/image start
+			function convert() {
+				var data = document.getElementById("picture").files[0];
+					loadImageFileAsURL(data);
+			}
+			
+			async function loadImageFileAsURL(fileToLoad){
+				var fileReader = new FileReader();
+				fileReader.onload = async function(fileLoadedEvent) {
+          const base64 = await resizeBase64Img(fileLoadedEvent.target.result, 600, 600)
+					imgdata.value = base64; // <--- data: base64
+          document.getElementById("imgdata").innerHTML = imgdata.value;
+          const base64_s = await resizeBase64Img(fileLoadedEvent.target.result, 400, 400)
+					imgdata_s.value = base64_s; // <--- data: base64
+          document.getElementById("imgdata_s").innerHTML = imgdata_s.value;
+          console.log(imgdata.value)
+				}
+				fileReader.readAsDataURL(fileToLoad);
+			}
+// Base64/image END
+// Resize image
+function resizeBase64Img(base64, newWidth, newHeight) {
+    return new Promise(function (resolve) {
+        var canvas = document.createElement('canvas');
+        canvas.width = newWidth;
+        canvas.height = newHeight;
+        var context = canvas.getContext('2d');
+        var img = document.createElement('img');
+        img.src = base64;
+        img.onload = function () {
+            var iw = img.width;
+            var ih = img.height;
+            var scale = Math.min(newWidth / iw, newHeight / ih);
+            var iwScaled = iw * scale;
+            var ihScaled = ih * scale;
+            canvas.width = iwScaled;
+            canvas.height = ihScaled;
+            context.drawImage(img, 0, 0, iwScaled, ihScaled);
+            resolve(canvas.toDataURL('image/jpeg', 0.5));
+        };
+    });
+}
+// Resize image END
 
     async function addPet() {
       //async submitForm ()
@@ -190,7 +235,8 @@ export default {
         sugu: state.gender,
         v2limus: state.appearance,
         iseloom: state.character,
-        pilt: myVar,
+        pilt64: imgdata.value,
+        pilt64_s: imgdata_s.value,
       });
       router.push({ name: 'detail', params: {userId: userId.value}});
       // pet_name.value = "";
@@ -204,6 +250,10 @@ export default {
 
     return {
       addPet,
+      resizeBase64Img,
+      imgdata,
+      imgdata_s,
+      convert,
       route,
       userId,
       pet_name,
