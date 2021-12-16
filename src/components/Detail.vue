@@ -30,7 +30,7 @@
           </div>
            <div class="row">
             <div class="col-6">
-            <button class="btn btn-dark mx-5 p-3 mb-5">
+            <button class="btn mx-5 p-3 mb-5">
               <router-link :to="{ name: 'EditPet', params: { 
               userId: userId,
               pet_id: pets._id,
