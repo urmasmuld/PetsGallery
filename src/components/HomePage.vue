@@ -26,7 +26,7 @@
             <div class="col-12 col-sm-3">
               <router-link :to="{ name: 'detail', params: { userId: 'Madis' }}">
                 <div class="card text-white">
-                <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                <img src="../assets/front_1.jpg" class="img-fluid" />
                 <div class="card-img-overlay d-flex align-items-end">
                     <h3 class="card-title">Madis</h3>
                 </div>
@@ -38,7 +38,7 @@
             <div class="col-12 col-sm-3"> 
                 <router-link :to="{ name: 'detail', params: { userId: 'Urmas' }}">
                   <div class="card text-white">
-                  <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                  <img src="../assets/front_2.jpg" class="img-fluid" />
                   <div class="card-img-overlay d-flex align-items-end">
                     <h3 class="card-title">Urmas</h3>
                   </div>
@@ -50,7 +50,7 @@
             <div class="col-12 col-sm-3">
               <router-link :to="{ name: 'detail', params: { userId: 'Kaisa' }}">
                 <div class="card text-white">
-                <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                <img src="../assets/front_3.jpg" class="img-fluid" />
                 <div class="card-img-overlay d-flex align-items-end">
                   <h3 class="card-title">Kaisa</h3>
                 </div>
@@ -61,7 +61,7 @@
             <div class="col-12 col-sm-3">
                 <router-link :to="{ name: 'detail', params: { userId: 'Triin' }}">
                   <div class="card text-white">
-                  <img src="../assets/test_pilt.jpg" class="img-fluid" />
+                  <img src="../assets/front_4.jpg" class="img-fluid" />
                   <div class="card-img-overlay d-flex align-items-end">
                     <h3 class="card-title">Triin</h3>
                   </div>

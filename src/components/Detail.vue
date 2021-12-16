@@ -44,7 +44,7 @@
                </button>
             </div>
             <div class="col-6">
-            <button @click="deletePets(pets._id)" class="btn btn-dark mx-5 p-3 mb-5">Kustuta lemmikloom</button>
+            <button @click="deletePets(pets._id)" class="btn mx-5 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
         </div>
       </div>
@@ -156,5 +156,8 @@ img {
   border: solid orange 3px;
   border-radius: 25px;
 }
-
+button {
+    border: 3px solid rgb(79, 48, 190);
+    border-radius: 25px;
+}
 </style>
