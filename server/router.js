@@ -3,9 +3,11 @@ const router = express.Router();
 // const petsData = require('./data.json')
 const { Pets } = require("./dbConnection");
 
-router.get("/get-pets-data", async function(request, response) {
+router.get("/get-pets-data/:id", async function(request, response) {
     // response.send(petsData);
-    const result = await Pets.find();
+    // console.log(request.body)
+    let omanik = request.params.id;
+    const result = await Pets.find({ omanik: omanik });
     console.log(result);
     response.send(result);
   });

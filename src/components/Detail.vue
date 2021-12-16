@@ -30,9 +30,9 @@
           </div>
            <div class="row">
             <div class="col-6">
-            <button class="btn mx-5 p-3 mb-5">
+            <button class="btn btn-dark mx-5 p-3 mb-5">
               <router-link :to="{ name: 'EditPet', params: { 
-              userId: userId,
+              userId: pets.userId,
               pet_id: pets._id,
               pet_name: pets.loomaNimi,
               species: pets.liik,
@@ -73,11 +73,11 @@ export default {
 
             async function getPets () {
                 const pets = ref([])
-                const result = await axios.get('/api/get-pets-data')
+                const result = await axios.get('/api/get-pets-data/'+ userId.value)
                 pets.value = result.data
-                const petsByOwner = pets.value.filter(d => d.omanik === userId.value)
+                const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner
-                console.log('petsByOwner: ', petsByOwner)
+                // console.log('petsByOwner: ', petsByOwner)
             }
 getPets ()
 
