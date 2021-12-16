@@ -78,7 +78,6 @@
 import { computed } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
-// import { link } from "fs";
 import router from "./../router"
 
 // let myVar = ''
@@ -102,30 +101,17 @@ export default {
 
   setup() {
     const pet_id = computed(() => route.params.pet_id);
-    // const pet_name = ref("");
-    // // const pet_name = computed(() => route.params.pet_name);
-    // const species = ref("");
-    // // const species = computed(() => route.params.species);
-    // const age = ref("");
-    // // const age = computed(() => route.params.age);
-    // const gender = ref("");
-    // // const gender = computed(() => route.params.gender);
-    // const appearance = ref("");
-    // // const appearance = computed(() => route.params.appearance);
-    // const character = ref("");
-    // const character = computed(() => route.params.character);
-    // const picture = ref(link);
     const route = useRoute();
     const userId = computed(() => route.params.userId);
 
 
     async function editPet() {
-        var pet_name = document.getElementById("pet_name").value;
-        var species = document.getElementById("species").value;
-        var age = document.getElementById("age").value;
-        var gender = document.getElementById("gender").value;
-        var appearance = document.getElementById("appearance").value;
-        var character = document.getElementById("character").value;
+        let pet_name = document.getElementById("pet_name").value;
+        let species = document.getElementById("species").value;
+        let age = document.getElementById("age").value;
+        let gender = document.getElementById("gender").value;
+        let appearance = document.getElementById("appearance").value;
+        let character = document.getElementById("character").value;
       await axios.post("/api/edit-pet", {
         pet_id: pet_id.value,
         omanik: userId.value,
@@ -145,15 +131,6 @@ export default {
       route,
       userId,
       pet_id,
-    //   pet_name,
-    //   species,
-    //   age,
-    //   gender,
-    //   appearance,
-    //   character,
-    //   picture,
-    //   v$,
-    //   state,
     };
 
 },
