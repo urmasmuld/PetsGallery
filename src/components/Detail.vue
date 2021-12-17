@@ -34,6 +34,7 @@
             <button class="btn mx-5 p-3 mb-5">
               <router-link :to="{ name: 'EditPet', params: { 
               userId: pets.userId,
+              omanik: pets.omanik,
               pet_id: pets._id,
               pet_name: pets.loomaNimi,
               species: pets.liik,

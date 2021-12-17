@@ -80,11 +80,10 @@ import axios from "axios";
 import { useRoute } from "vue-router";
 import router from "./../router"
 
-// let myVar = ''
-
 export default {
         data(){
         return{
+              // omanik:this.$route.params.omanik,
               pet_name:this.$route.params.pet_name,
               species:this.$route.params.species,
               age:this.$route.params.age,
@@ -103,6 +102,7 @@ export default {
     const pet_id = computed(() => route.params.pet_id);
     const route = useRoute();
     const userId = computed(() => route.params.userId);
+    const omanik = computed(() => route.params.omanik);
 
 
     async function editPet() {
@@ -123,13 +123,14 @@ export default {
         iseloom: character,
         // pilt: myVar,
       });
-      router.push({ name: 'detail', params: {userId: userId.value}});
+      router.push({ name: 'detail', params: {userId: omanik.value}});
     }
 
     return {
       editPet,
       route,
       userId,
+      // omanik,
       pet_id,
     };
 
