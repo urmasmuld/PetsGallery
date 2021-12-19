@@ -2,6 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import NewPet from "../views/NewPet.vue";
 import EditPet from "../views/EditPet.vue";
+import Login from '../views/Login.vue';
+import Signup from '../views/Signup.vue';
+import ForgotPassword from '../views/ForgotPassword.vue';
+
 // const NewPet = () => import('../views/NewPet.vue')
 const routes = [
   {
@@ -29,7 +33,24 @@ const routes = [
     component: () =>
       import("../views/View.vue"),
   },
-];
+  {
+    path: '/signup',
+    name: 'Signup',
+    // component: () => import('../components/Signup.vue')
+    component: Signup,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    // component: () => import('../components/Login.vue')
+    component: Login,
+  },
+  {
+    path: '/forgot-password',
+    name: 'Forgot-password',
+    component: ForgotPassword,
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -37,3 +58,4 @@ const router = createRouter({
 });
 
 export default router;
+

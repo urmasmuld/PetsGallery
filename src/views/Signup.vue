@@ -1,23 +1,22 @@
 <template>
-  
-  <div class="editPet">
+  <div class="signup">
    <Nav/>
-   <EditPet />
+   <Signup/>
    <Footer/>
   </div>
 </template>
+
 <script>
-// @ is an alias to /src
-import EditPet from "@/components/EditPet.vue";
 import Nav from "@/components/Nav.vue";
+import Signup from "@/components/Signup.vue";
 import Footer from "@/components/Footer.vue";
 
 
 export default {
-  name: "detail",
+  name: "signup",
   components: {
     Nav,
-    EditPet,
+    Signup,
     Footer,
     
   },

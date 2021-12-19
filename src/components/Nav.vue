@@ -1,5 +1,14 @@
 <template>
-
+<div class="container">
+      <ul class="row-flex float-right mt-2 mr-2 fixed-top">
+              <li class="nav-item float-right">
+              <router-link class="nav-link mt-2" to="/login">Sign in</router-link>
+               </li>
+              <li class="nav-item float-right mt-2">
+              <router-link class="btn btn-outline-primary" to="/signup">Sign up</router-link>
+              </li>
+        </ul>
+</div>
 <nav class="navbar navbar-expand-sm navbar-light bg-light sticky">
         <span class="navbar-text">
            <h3>Lemmikloomade galerii</h3>
@@ -22,7 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/view/Kaisa">Kaisa</a>
                 </li>
-            </ul>
+                    
+        </ul>
+        
     </nav>
 </template>
 
@@ -33,9 +44,11 @@ export default {
     msg: String,
   },
 };
+
 </script>
 
 <style scoped>
+
 .sticky {
   position: sticky;
   z-index: 100;
@@ -75,6 +88,9 @@ transition: 1s;
 /* .navbar a.router-link-exact-active {
   color: #42b983; */
 
+ul{
+  list-style-type: none;
+}
 
 </style>
 
