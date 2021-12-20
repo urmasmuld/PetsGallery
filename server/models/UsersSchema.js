@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const { SECRET } = require("./config");
 const jwt = require("jsonwebtoken");
 
-const UserSchema = new Schema({
+const UsersSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -14,12 +14,8 @@ const UserSchema = new Schema({
   confirmed: { type: Boolean, default: false },
 });
 
-userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, SECRET);
-    return token;
-};
 
-const Users = mongoose.model("Users", UserSchema);
+const Users = mongoose.model("Users", UsersSchema);
 
 module.exports = {
   Users,

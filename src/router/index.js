@@ -2,9 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import NewPet from "../views/NewPet.vue";
 import EditPet from "../views/EditPet.vue";
-import Login from '../views/Login.vue';
-import Signup from '../views/Signup.vue';
-import ForgotPassword from '../views/ForgotPassword.vue';
+
 
 // const NewPet = () => import('../views/NewPet.vue')
 const routes = [
@@ -36,19 +34,22 @@ const routes = [
   {
     path: '/signup',
     name: 'Signup',
-    // component: () => import('../components/Signup.vue')
-    component: Signup,
+    component: () =>
+    import(/* webpackChunkName: "signup" */ "../views/Signup.vue"),
+    
   },
   {
     path: '/login',
     name: 'Login',
-    // component: () => import('../components/Login.vue')
-    component: Login,
+    component: () =>
+    import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+   
   },
   {
     path: '/forgot-password',
     name: 'Forgot-password',
-    component: ForgotPassword,
+    component: () =>
+    import(/* webpackChunkName: "forgot-password" */ "../views/ForgotPassword.vue"),
   }
 ]
 
@@ -57,19 +58,19 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.auth) {
-//     if (localStorage.getItem("token")) {
-//       next();
-//     } else {
-//       next({ name: "Login" });
-//     }
-//   } else {
-//     next();
-//   }
-//   console.log("dsdsds");
-//   next();
-// });
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    if (localStorage.getItem("token")) {
+      next();
+    } else {
+      next({ name: "Login" });
+    }
+  } else {
+    next();
+  }
+  console.log("dsdsds");
+  next();
+});
 
 export default router;
 
