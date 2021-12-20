@@ -248,6 +248,11 @@ function resizeBase64Img(base64, newWidth, newHeight) {
         iseloom: state.character,
         pilt64: imgdata.value,
         pilt64_s: imgdata_s.value,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+      },
       });
       router.push({ name: 'detail', params: {userId: userId.value}});
     }

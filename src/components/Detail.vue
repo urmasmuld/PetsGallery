@@ -31,7 +31,7 @@
           </div>
            <div class="row">
             <div class="col-6">
-            <button class="btn mx-5 p-3 mb-5">
+            <button class="btn mx-2 p-3 mb-5">
               <router-link :to="{ name: 'EditPet', params: { 
               userId: pets.userId,
               omanik: pets.omanik,
@@ -46,7 +46,7 @@
                </button>
             </div>
             <div class="col-6">
-            <button @click="deletePets(pets._id)" class="btn mx-5 p-3 mb-5">Kustuta lemmikloom</button>
+            <button @click="deletePets(pets._id)" class="btn mx-2 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
         </div>
       </div>
