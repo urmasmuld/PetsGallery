@@ -11,7 +11,7 @@ router.get("/get-pets-data/:id", async function(request, response) {
     // console.log(request.body)
     let omanik = request.params.id;
     const result = await Pets.find({ omanik: omanik });
-    console.log(result);
+    // console.log(result);
     response.send(result);
   });
 

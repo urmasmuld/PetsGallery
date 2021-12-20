@@ -87,10 +87,12 @@ export default {
 
             async function getPets () {
                 const pets = ref([])
-                const result = await axios.get('/api/get-pets-data/'+ userId.value, {headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
+                const result = await axios.get('/api/get-pets-data/'+ userId.value, 
+                {
+                  headers: {
+                  Authorization: localStorage.getItem("token"),
+                },
+                })
                 pets.value = result.data
                 const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner
