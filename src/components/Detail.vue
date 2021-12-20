@@ -4,7 +4,7 @@
     <div class="col">
     
       <h1 class="m-3"> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
-      <div class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
+      <div v-if="tokenexists" class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
     </div>
   </div>
 
@@ -67,6 +67,18 @@ export default {
   props: {
     msg: String,
   },
+  data() {
+    function clear() {
+      localStorage.clear();
+      //  console.log(localStorage.getItem("token"));
+    }
+
+    return {
+      tokenexists: localStorage.getItem("token"),
+      clear,
+    };
+  },
+
   setup() {
     const route = useRoute();
     const userId = computed(() => route.params.userId)
@@ -75,12 +87,10 @@ export default {
 
             async function getPets () {
                 const pets = ref([])
-                // const result = await axios.get('/api/get-pets-data/'+ userId.value)
-      const result = await axios.get("/api/get-pets-data/"+ userId.value, {
-        headers: {
+                const result = await axios.get('/api/get-pets-data/'+ userId.value, {headers: {
           Authorization: localStorage.getItem("token"),
         },
-      });                
+      })
                 pets.value = result.data
                 const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner

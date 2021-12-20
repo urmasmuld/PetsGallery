@@ -10,19 +10,19 @@
                        <a
                 class="btn btn-info m-3"
                 @click="clear"
-                onclick="location.href='../';"
+                onclick="location.href='/';"
                 >Logi välja</a
               >
             </div>
             <div v-else>
               <a
                 class="btn btn-info m-3"
-                onclick="location.href='../Login';"
+                onclick="location.href='/Login';"
                 >Logi sisse</a
               >
               <a
                 class="btn btn-info m-3"
-                onclick="location.href='../Register';"
+                onclick="location.href='/Register';"
                 >Loo kasutaja</a
               >
             </div>

@@ -1,5 +1,6 @@
 <template>
 <div class="editpet">
+  <div v-if="tokenexists">
    <p>
     <label for="pet_name">Looma nimi</label>
     <input
@@ -70,7 +71,13 @@
       value="Submit"
     >Salvesta</button>
   </p>
-
+</div>
+<div v-else>
+  <a
+    class="btn btn-info m-3"
+    onclick="location.href='/Login';"
+    >Logi sisse</a>
+</div>
 </div>
 </template>
 
@@ -82,7 +89,13 @@ import router from "./../router"
 
 export default {
         data(){
+        function clear() {
+          localStorage.clear();
+          //  console.log(localStorage.getItem("token"));
+        }
         return{
+              tokenexists: localStorage.getItem("token"),
+              clear,          
               // omanik:this.$route.params.omanik,
               pet_name:this.$route.params.pet_name,
               species:this.$route.params.species,

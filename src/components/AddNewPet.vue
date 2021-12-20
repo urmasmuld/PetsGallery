@@ -1,5 +1,6 @@
 <template>
 <div class="addnew">
+  <div v-if="tokenexists">
   <p>
     <label for="name">Omanik</label>
 
@@ -124,7 +125,13 @@
       value="Submit"
     >Salvesta</button>
   </p>
-
+</div>
+<div v-else>
+  <a
+    class="btn btn-info m-3"
+    onclick="location.href='/Login';"
+    >Logi sisse</a>
+</div>
 </div>
 </template>
 
