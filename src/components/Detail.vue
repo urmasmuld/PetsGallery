@@ -75,7 +75,12 @@ export default {
 
             async function getPets () {
                 const pets = ref([])
-                const result = await axios.get('/api/get-pets-data/'+ userId.value)
+                // const result = await axios.get('/api/get-pets-data/'+ userId.value)
+      const result = await axios.get("/api/get-pets-data/"+ userId.value, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });                
                 pets.value = result.data
                 const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner
@@ -85,7 +90,12 @@ getPets ()
 
 // Delete
     async function deletePets(id) {
-      await axios.get("/api/delete-pets/" + id);
+      const result = await axios.get("/api/delete-pets/" + id, {headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+        );
+        result.data
       await getPets();
     }
 

@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 // const petsData = require('./data.json')
 const { Pets } = require("./dbConnection");
+const authRoutes = require("./authenticate.router");
+
+router.use("/auth", authRoutes);
 
 router.get("/get-pets-data/:id", async function(request, response) {
     // response.send(petsData);

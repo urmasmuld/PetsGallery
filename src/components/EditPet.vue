@@ -112,7 +112,7 @@ export default {
         let gender = document.getElementById("gender").value;
         let appearance = document.getElementById("appearance").value;
         let character = document.getElementById("character").value;
-      await axios.post("/api/edit-pet", {
+      const result = await axios.post("/api/edit-pet", {
         pet_id: pet_id.value,
         omanik: userId.value,
         loomaNimi: pet_name,
@@ -122,7 +122,14 @@ export default {
         v2limus: appearance,
         iseloom: character,
         // pilt: myVar,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+      },
       });
+      result.data
+   
       router.push({ name: 'detail', params: {userId: omanik.value}});
     }
 

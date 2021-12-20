@@ -144,6 +144,17 @@ export default {
   props: {
     title: String,
   },
+  data() {
+    function clear() {
+      localStorage.clear();
+      //  console.log(localStorage.getItem("token"));
+    }
+
+    return {
+      tokenexists: localStorage.getItem("token"),
+      clear,
+    };
+  },
 
   setup() {
     const state = reactive({
@@ -239,13 +250,6 @@ function resizeBase64Img(base64, newWidth, newHeight) {
         pilt64_s: imgdata_s.value,
       });
       router.push({ name: 'detail', params: {userId: userId.value}});
-      // pet_name.value = "";
-      // species.value = "";
-      // age.value = "";
-      // gender.value = "";
-      // appearance.value = "";
-      // character.value = "";
-      // imgdata.value = "";
     }
 
     return {
