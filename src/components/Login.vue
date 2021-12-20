@@ -32,17 +32,46 @@
 //   },
 // };
 
- export default {
-        data() {
-            return {}
-        }
+//  export default {
+//         data() {
+//             return {}
+//         }
+//     }
+import { defineComponent } from "vue";
+import { ref } from "vue";
+import axios from "axios";
+import router from "./../router";
+
+export default defineComponent({
+  setup() {
+    let email = ref("");
+    let password = ref("");
+
+    async function login() {
+      const { data } = await axios.post("/api/auth/login", {
+        email: email.value,
+        password: password.value,
+      });
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+      router.push("/");
     }
+
+    return {
+      email,
+      password,
+      login,
+    };
+  },
+});
 
 </script>
 
 <style scoped>
 
 * {
+
   box-sizing: border-box;
 }
 

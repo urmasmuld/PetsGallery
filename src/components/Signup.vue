@@ -10,12 +10,17 @@
 
             <div class="form-group">
                 <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" />
+                <input type="email" name="email" class="form-control form-control-lg" />
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
+                <input type="password" name="password" class="form-control form-control-lg" />
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="password2" class="form-control form-control-lg" />
             </div>
 
             <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
@@ -28,12 +33,45 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {}
-        }
+ <script>
+//     export default {
+//         data() {
+//             return {}
+//         }
+//     }
+
+import { defineComponent } from "vue";
+import { ref } from "vue";
+import axios from "axios";
+
+export default defineComponent({
+  setup() {
+    let name = ref ("");
+    let email = ref("");
+    let password = ref("");
+    let password2 = ref("");
+
+    async function signup() {
+      if (password.value === password2.value) {
+        await axios.post("/api/auth/signup", {
+          email: email.value,
+          password: password.value,
+          name: name.value,
+        });
+      } else {
+        alert("Password are not matching!");
+      }
     }
+
+    return {
+      name,
+      email,
+      password,
+      password2,
+      signup,
+    };
+  },
+});
 </script>
 <style scoped>
 
@@ -41,23 +79,12 @@
   box-sizing: border-box;
 }
 
-/* body {
-  min-height: 100vh;
-  display: flex;
-  font-weight: 400;
-} */
-
-/* body,
-html, */
 .vertical-center {
   width: 100%;
   height: 100%;
 }
 
-/* .navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-} */
+
 
 .vertical-center {
   display: flex;

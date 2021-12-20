@@ -57,5 +57,19 @@ const router = createRouter({
   routes,
 });
 
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.auth) {
+//     if (localStorage.getItem("token")) {
+//       next();
+//     } else {
+//       next({ name: "Login" });
+//     }
+//   } else {
+//     next();
+//   }
+//   console.log("dsdsds");
+//   next();
+// });
+
 export default router;
 

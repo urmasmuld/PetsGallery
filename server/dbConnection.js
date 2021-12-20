@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 //Connecting to database
 mongoose.connect(
     "mongodb+srv://urmas:Kammkala123@cluster0.0scmk.mongodb.net/PetsGallery?retryWrites=true&w=majority",
@@ -25,4 +26,5 @@ const Pets = mongoose.model("Pets", PetsSchema);
 
 module.exports = {
     Pets,
+    
 };
