@@ -3,27 +3,27 @@
         <form>
             <h3>Sign Up</h3>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Full Name</label>
-                <input type="text" class="form-control form-control-lg"/>
-            </div>
+                <input type="text" name="name" class="form-control form-control-lg"/>
+            </div> -->
 
             <div class="form-group">
                 <label>Email address</label>
-                <input type="email" name="email" class="form-control form-control-lg" />
+                <input type="email" v-model="email" name="email" class="form-control form-control-lg" />
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control form-control-lg" />
+                <input type="password" v-model="password" name="password" class="form-control form-control-lg" />
             </div>
 
             <div class="form-group">
                 <label>Confirm Password</label>
-                <input type="password" name="password2" class="form-control form-control-lg" />
+                <input type="password" v-model="password2" name="password2" class="form-control form-control-lg" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
+            <button type="submit" @click="signup" class="btn btn-dark btn-lg btn-block">Sign Up</button>
 
             <p class="forgot-password text-right">
                 Already registered 
@@ -36,29 +36,25 @@
  <script>
 import { defineComponent } from "vue";
 import { ref } from "vue";
+import router from "./../router";
 import axios from "axios";
-
 export default defineComponent({
   setup() {
-    let name = ref ("");
     let email = ref("");
     let password = ref("");
     let password2 = ref("");
-
     async function signup() {
       if (password.value === password2.value) {
         await axios.post("/api/auth/signup", {
           email: email.value,
           password: password.value,
-          name: name.value,
         });
       } else {
         alert("Password are not matching!");
       }
+      router.push("/");
     }
-
     return {
-      name,
       email,
       password,
       password2,
@@ -78,8 +74,6 @@ export default defineComponent({
   width: 100%;
   height: 100%;
 }
-
-
 
 .vertical-center {
   display: flex;

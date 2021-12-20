@@ -69,7 +69,7 @@ router.beforeEach((to, from, next) => {
     next();
   }
   console.log("dsdsds");
-  next();
+    // next();
 });
 
 export default router;

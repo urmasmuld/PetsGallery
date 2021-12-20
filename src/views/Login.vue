@@ -6,15 +6,15 @@
 
             <div class="form-group">
                 <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" />
+                <input type="text" v-model="email" name="email" class="form-control form-control-lg" />
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
+                <input type="password" v-model="password" name="password" class="form-control form-control-lg" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
+            <button type="submit" @click="login" class="btn btn-dark btn-lg btn-block">Sign In</button>
 
             <p class="forgot-password text-right mt-2 mb-4">
                 <router-link to="/forgot-password">Forgot password ?</router-link>
@@ -26,29 +26,27 @@
 import { defineComponent } from "vue";
 import { ref } from "vue";
 import axios from "axios";
+import router from "./../router";
 
 export default defineComponent({
   setup() {
     let email = ref("");
     let password = ref("");
-    let password2 = ref("");
-
-    async function register() {
-      if (password.value === password2.value) {
-        await axios.post("/api/auth/register", {
-          email: email.value,
-          password: password.value,
-        });
-      } else {
-        alert("Password are not matching!");
+    async function login() {
+      const { data } = await axios.post("/api/auth/login", {
+        email: email.value,
+        password: password.value,
+      });
+      
+      if (data.token) {
+        localStorage.setItem("token", data.token);
       }
+      router.push("/");
     }
-
     return {
       email,
       password,
-      password2,
-      register,
+      login,
     };
   },
 });
