@@ -209,7 +209,7 @@ export default {
           const base64_s = await resizeBase64Img(fileLoadedEvent.target.result, 400, 400)
 					imgdata_s.value = base64_s; // <--- data: base64
           document.getElementById("imgdata_s").innerHTML = imgdata_s.value;
-          console.log(imgdata.value)
+          // console.log(imgdata.value)
 				}
 				fileReader.readAsDataURL(fileToLoad);
 			}
