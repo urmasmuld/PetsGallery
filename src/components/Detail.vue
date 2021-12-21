@@ -84,22 +84,30 @@ export default {
     const userId = computed(() => route.params.userId)
 
             const petsFromServer = ref([])
+// const page = ref(1);
 
-            async function getPets () {
+console.log(getPets())
+
+
+            async function getPets() {
                 const pets = ref([])
-                const result = await axios.get('/api/get-pets-data/'+ userId.value, 
+                const result = await axios.post('/api/get-pets-data/'+ userId.value, 
+                // {
+                //   page: page.value
+                // },
                 {
                   headers: {
                   Authorization: localStorage.getItem("token"),
                 },
                 })
-                pets.value = result.data
+                pets.value = result.data.docs
                 const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner
                 // console.log('petsByOwner: ', petsByOwner)
             }
-getPets ()
 
+
+getPets ()
 // Delete
     async function deletePets(id) {
       const result = await axios.get("/api/delete-pets/" + id, {headers: {

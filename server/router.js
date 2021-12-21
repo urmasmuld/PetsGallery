@@ -6,11 +6,16 @@ const authRoutes = require("./authenticate.router");
 
 router.use("/auth", authRoutes);
 
-router.get("/get-pets-data/:id", async function(request, response) {
+router.post("/get-pets-data/:id", async function(request, response) {
     // response.send(petsData);
     // console.log(request.body)
     let omanik = request.params.id;
-    const result = await Pets.find({ omanik: omanik });
+    const options = { 
+        page: request.body.page || 1,
+        limit: request.body.limit || 10,
+        projection: { pilt64: 0 }
+     }
+    const result = await Pets.paginate({ omanik: omanik }, options);
     // console.log(result);
     response.send(result);
   });

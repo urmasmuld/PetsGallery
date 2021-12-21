@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const Schema = mongoose.Schema;
 
 const PetsSchema = new Schema({
@@ -14,6 +16,8 @@ const PetsSchema = new Schema({
     pilt64_s: { type: String },
     
 });
+
+PetsSchema.plugin(mongoosePaginate);
 
 const Pets = mongoose.model("Pets", PetsSchema);
 

@@ -150,7 +150,6 @@ export default {
       editPet,
       route,
       userId,
-      // omanik,
       pet_id,
     };
 
