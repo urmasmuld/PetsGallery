@@ -84,10 +84,32 @@ export default {
     const userId = computed(() => route.params.userId)
 
             const petsFromServer = ref([])
-const page = ref(1);
+const page = ref(2);
 
-console.log(getPets())
+///////////////////////////
+// const testData = getPets();
+// console.log("Data: ",testData)
 
+async function getPaginationData() {
+        try {
+            let res = await getPets();
+            console.log('hasNextPage: ', res.hasNextPage);
+            console.log('hasPrevPage: ', res.hasPrevPage);
+            console.log('limit: ', res.limit);
+            console.log('nextPage: ', res.nextPage);
+            console.log('page: ', res.page);
+            console.log('pagingCounter: ', res.pagingCounter);
+            console.log('prevPage: ', res.prevPage);
+            console.log('totalDocs: ', res.totalDocs);
+            console.log('totalDocs: ', res.totalDocs);
+            console.log('totalPages: ', res.totalPages);
+        } catch (error) {
+            console.log(error);
+        }
+}
+console.log(getPaginationData());
+
+///////////////////////////
 
             async function getPets() {
                 const pets = ref([])
@@ -100,11 +122,15 @@ console.log(getPets())
                   headers: {
                   Authorization: localStorage.getItem("token"),
                 },
-                })
+                },
+                )
+                // console.log(result.data)
                 pets.value = result.data.docs
                 const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner
                 // console.log('petsByOwner: ', petsByOwner)
+                const pagingData = result.data
+                return pagingData;
             }
 
 
