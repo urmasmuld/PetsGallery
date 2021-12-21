@@ -84,7 +84,7 @@ export default {
     const userId = computed(() => route.params.userId)
 
             const petsFromServer = ref([])
-// const page = ref(1);
+const page = ref(1);
 
 console.log(getPets())
 
@@ -92,9 +92,9 @@ console.log(getPets())
             async function getPets() {
                 const pets = ref([])
                 const result = await axios.post('/api/get-pets-data/'+ userId.value, 
-                // {
-                //   page: page.value
-                // },
+                {
+                  page: page.value
+                },
                 {
                   headers: {
                   Authorization: localStorage.getItem("token"),
