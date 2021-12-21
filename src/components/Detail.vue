@@ -107,7 +107,7 @@ async function getPaginationData() {
             console.log(error);
         }
 }
-console.log(getPaginationData());
+getPaginationData();
 
 ///////////////////////////
 
