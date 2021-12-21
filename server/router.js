@@ -37,7 +37,7 @@ router.post("/get-pets-data/:userId", async function(request, response) {
 });
 
 router.post("/edit-pet/", async function (request, response) {
-  console.log(request.body)
+  // console.log(request.body)
   if (request.body.pet_id) {
   await Pets.updateOne(
     { _id: request.body.pet_id }, 
