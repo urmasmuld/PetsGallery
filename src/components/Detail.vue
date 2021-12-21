@@ -95,6 +95,7 @@ console.log(getPets())
                 {
                   page: page.value
                 },
+                
                 {
                   headers: {
                   Authorization: localStorage.getItem("token"),
