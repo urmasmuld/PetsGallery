@@ -8,6 +8,21 @@
     </div>
   </div>
 
+
+<ul>
+  <li v-for="(page, index) in pagination.totalPages" :key="index" @click="getPets(page)">
+
+  <button 
+  class="btn mr-3 p-3"
+  :disabled="page === pagination.page"
+  >
+  {{ page }}
+  </button>
+  
+  </li>
+</ul>
+
+
 <div class="project-container">
   <div class="row project"
       v-for="pets in petsFromServer" 
@@ -84,48 +99,24 @@ export default {
     const userId = computed(() => route.params.userId)
 
             const petsFromServer = ref([])
-const page = ref(2);
-
-///////////////////////////
-// const testData = getPets();
-// console.log("Data: ",testData)
-
-async function getPaginationData() {
-        try {
-            let res = await getPets();
-            console.log('hasNextPage: ', res.hasNextPage);
-            console.log('hasPrevPage: ', res.hasPrevPage);
-            console.log('limit: ', res.limit);
-            console.log('nextPage: ', res.nextPage);
-            console.log('page: ', res.page);
-            console.log('pagingCounter: ', res.pagingCounter);
-            console.log('prevPage: ', res.prevPage);
-            console.log('totalDocs: ', res.totalDocs);
-            console.log('totalDocs: ', res.totalDocs);
-            console.log('totalPages: ', res.totalPages);
-        } catch (error) {
-            console.log(error);
-        }
-}
-getPaginationData();
-
-///////////////////////////
-
-            async function getPets() {
+            const pagination = ref({totalPages: [], page: 1})
+            async function getPets(page = 1) {
                 const pets = ref([])
                 const result = await axios.post('/api/get-pets-data/'+ userId.value, 
                 {
-                  page: page.value
+                  page: page
                 },
-                
                 {
                   headers: {
                   Authorization: localStorage.getItem("token"),
                 },
                 },
                 )
-                // console.log(result.data)
+                console.log(result.data)
                 pets.value = result.data.docs
+                pagination.value.totalPages = Array(result.data.totalPages).fill(0).map((page,index) => index + 1)
+                pagination.value.page = result.data.page
+                console.log("Page: " + pagination.value.page)
                 const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner
                 // console.log('petsByOwner: ', petsByOwner)
@@ -133,8 +124,8 @@ getPaginationData();
                 return pagingData;
             }
 
-
 getPets ()
+
 // Delete
     async function deletePets(id) {
       const result = await axios.get("/api/delete-pets/" + id, {headers: {
@@ -150,12 +141,18 @@ getPets ()
       userId,
       petsFromServer,
       deletePets,
+      getPets,
+      pagination,
     };
   },
 };
 </script>
 
 <style scoped>
+
+li {
+  display:inline;
+}
 
 h1 {
       margin-bottom: 5rem;
