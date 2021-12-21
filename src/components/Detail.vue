@@ -9,7 +9,7 @@
   </div>
 
 
-<ul>
+<ul id="pagination">
   <li v-for="(page, index) in pagination.totalPages" :key="index" @click="getPets(page)">
 
   <button 
@@ -150,7 +150,7 @@ getPets ()
 
 <style scoped>
 
-li {
+#pagination li {
   display:inline;
 }
 
