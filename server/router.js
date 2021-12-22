@@ -12,7 +12,7 @@ router.post("/get-pets-data/:userId", async function(request, response) {
     let omanik = request.params.userId;
     const options = { 
         page: request.body.page || 1,
-        limit: request.body.limit || 1,
+        limit: request.body.limit || 2,
         projection: { pilt64: 0 },
         // sort: { loomaNimi: 1 },
      }

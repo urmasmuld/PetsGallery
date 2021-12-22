@@ -106,13 +106,8 @@ export default {
                 {
                   page: page
                 },
-                {
-                  headers: {
-                  Authorization: localStorage.getItem("token"),
-                },
-                },
                 )
-                console.log(result.data)
+                // console.log(result.data)
                 pets.value = result.data.docs
                 pagination.value.totalPages = Array(result.data.totalPages).fill(0).map((page,index) => index + 1)
                 pagination.value.page = result.data.page
