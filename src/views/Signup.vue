@@ -1,6 +1,6 @@
 <template>
     <div class="vertical-center inner-block">
-        <form>
+        <form @submit.prevent="onSubmit">
             <h3>Sign Up</h3>
 
             <!-- <div class="form-group">

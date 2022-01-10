@@ -10,6 +10,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    meta: { auth: false }
   },
   { 
     path: '/view/:userId/AddNew', 
@@ -20,7 +21,8 @@ const routes = [
     path: '/view/Edit/:pet_id', 
     name: "EditPet",
     component: EditPet,
-    props: (route) => ({ pet_name: route.query.pet_name })   
+    props: (route) => ({ pet_name: route.query.pet_name }), 
+    meta:{auth: true}
   },
   {
     path: "/view/:userId",
@@ -30,6 +32,8 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import("../views/View.vue"),
+      meta: { auth: false }
+
   },
   {
     path: '/signup',

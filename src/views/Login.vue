@@ -1,7 +1,7 @@
 
  <template>
     <div class="vertical-center inner-block">
-        <form>
+        <form @submit.prevent="onSubmit">
             <h3>Sign In</h3>
 
             <div class="form-group">
@@ -37,7 +37,7 @@ export default defineComponent({
         email: email.value,
         password: password.value,
       });
-      
+
       if (data.token) {
         localStorage.setItem("token", data.token);
       }

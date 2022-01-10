@@ -9,7 +9,7 @@ const { SECRET } = require("./config");
 
 app.use(
   expressJwt({ secret: SECRET, algorithms: ["HS256"] }).unless({
-    path: ["/api/auth/register", "/api/auth/login", new RegExp('/api/get-pets-data.*/', 'i')],
+    path: ["/api/auth/signup", "/api/auth/login", new RegExp('/api/get-pets-data.*/', 'i')],
   })
 );
 

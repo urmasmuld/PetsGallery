@@ -4,7 +4,7 @@
     <div class="col">
     
       <h1 class="m-3"> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
-      <div class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
+      <div v-if="tokenexists" class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
     </div>
   </div>
 
@@ -31,7 +31,7 @@
           </div>
            <div class="row">
             <div class="col-6">
-            <button class="btn mx-5 p-3 mb-5">
+            <button v-if="tokenexists" class="btn mx-5 p-3 mb-5">
               <router-link :to="{ name: 'EditPet', params: { 
               userId: pets.userId,
               omanik: pets.omanik,
@@ -46,7 +46,7 @@
                </button>
             </div>
             <div class="col-6">
-            <button @click="deletePets(pets._id)" class="btn mx-5 p-3 mb-5">Kustuta lemmikloom</button>
+            <button  v-if="tokenexists" @click="deletePets(pets._id)" class="btn mx-5 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
         </div>
       </div>
@@ -67,6 +67,16 @@ export default {
   props: {
     msg: String,
   },
+   data() {
+    function clear() {
+      localStorage.clear();
+      //  console.log(localStorage.getItem("token"));
+    }
+    return {
+      tokenexists: localStorage.getItem("token"),
+      clear,
+    };
+  },
   setup() {
     const route = useRoute();
     const userId = computed(() => route.params.userId)
@@ -85,7 +95,12 @@ getPets ()
 
 // Delete
     async function deletePets(id) {
-      await axios.get("/api/delete-pets/" + id);
+      const result = await axios.get("/api/delete-pets/" + id, {headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+        );
+        result.data
       await getPets();
     }
 

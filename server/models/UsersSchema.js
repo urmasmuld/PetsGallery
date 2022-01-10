@@ -8,7 +8,7 @@ const UsersSchema = new Schema({
     unique: true,
   },
   password: { type: String, required: true },
-  name: { type: String, required: true },
+  name: { type: String },
   confirmed: { type: Boolean, default: false },
 });
 

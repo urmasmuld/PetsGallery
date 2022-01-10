@@ -1,13 +1,24 @@
 <template>
 <div class="container">
       <ul class="row-flex float-right mt-2 mr-2 fixed-top">
+        <div v-if="tokenexists">
+              <a 
+                class="btn btn-info m-3 nav-item float-right"
+                @click="clear"
+                onclick="location.href='/';"
+                >Logi välja</a
+              >
+        </div>
+        <div v-else>
               <li class="nav-item float-right">
               <router-link class="nav-link mt-2" to="/login">Sign in</router-link>
                </li>
               <li class="nav-item float-right mt-2">
               <router-link class="btn btn-outline-primary" to="/signup">Sign up</router-link>
               </li>
+        </div>
         </ul>
+      
 </div>
 <nav class="navbar navbar-expand-sm navbar-light bg-light sticky">
         <span class="navbar-text">
@@ -42,6 +53,16 @@ export default {
   name: "navbar",
   props: {
     msg: String,
+  },
+data() {
+    function clear() {
+      localStorage.clear();
+      //  console.log(localStorage.getItem("token"));
+    }
+    return {
+      tokenexists: localStorage.getItem("token"),
+      clear,
+    };
   },
 };
 
