@@ -1,8 +1,9 @@
-
 const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const Schema = mongoose.Schema;
 
-PetsSchema = new Schema({
+const PetsSchema = new Schema({
     omanik: { type: String },
     loomaNimi: { type: String },
     liik: { type: String },
@@ -16,9 +17,10 @@ PetsSchema = new Schema({
     
 });
 
+PetsSchema.plugin(mongoosePaginate);
+
 const Pets = mongoose.model("Pets", PetsSchema);
 
 module.exports = {
-    Pets,
-    
+  Pets,
 };

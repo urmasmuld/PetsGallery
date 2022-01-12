@@ -6,11 +6,19 @@ const authRoutes = require("./authenticate.router");
 
 router.use("/auth", authRoutes);
 
-router.get("/get-pets-data/:id", async function(request, response) {
+router.post("/get-pets-data/:userId", async function(request, response) {
     // response.send(petsData);
     // console.log(request.body)
-    let omanik = request.params.id;
-    const result = await Pets.find({ omanik: omanik });
+    let omanik = request.params.userId;
+
+    const options = { 
+        page: request.body.page || 1,
+        limit: request.body.limit || 1, //määrab mitu pilti kuvab korraga
+        projection: { pilt64: 0 },
+        // sort: { loomaNimi: 1 },
+     }
+     
+    const result = await Pets.paginate({ omanik: omanik }, options);
     // console.log(result);
     response.send(result);
   });
@@ -31,7 +39,7 @@ router.get("/get-pets-data/:id", async function(request, response) {
 });
 
 router.post("/edit-pet/", async function (request, response) {
-  console.log(request.body)
+  // console.log(request.body)
   if (request.body.pet_id) {
   await Pets.updateOne(
     { _id: request.body.pet_id }, 

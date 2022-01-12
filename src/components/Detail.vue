@@ -8,6 +8,9 @@
     </div>
   </div>
 
+
+
+
 <div class="project-container">
   <div class="row project"
       v-for="pets in petsFromServer" 
@@ -31,7 +34,7 @@
           </div>
            <div class="row">
             <div class="col-6">
-            <button v-if="tokenexists" class="btn mx-5 p-3 mb-5">
+            <button v-if="tokenexists" class="btn mr-3 p-3 mb-5">
               <router-link :to="{ name: 'EditPet', params: { 
               userId: pets.userId,
               omanik: pets.omanik,
@@ -46,7 +49,7 @@
                </button>
             </div>
             <div class="col-6">
-            <button  v-if="tokenexists" @click="deletePets(pets._id)" class="btn mx-5 p-3 mb-5">Kustuta lemmikloom</button>
+            <button v-if="tokenexists" @click="deletePets(pets._id)" class="btn mr-3 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
         </div>
       </div>
@@ -54,7 +57,19 @@
   </div>
 </div>
 </div>
+
+  <ul id="pagination">
+  <li v-for="(page, index) in pagination.totalPages" :key="index" @click="getPets(page)">
+
+  <button 
+  class="btn mr-3 p-3"
+  :disabled="page === pagination.page"
+  >
+  {{ page }}
+  </button>
   
+  </li>
+</ul>
       
 </template>
 
@@ -67,30 +82,43 @@ export default {
   props: {
     msg: String,
   },
-   data() {
+  data() {
     function clear() {
       localStorage.clear();
       //  console.log(localStorage.getItem("token"));
     }
+
     return {
       tokenexists: localStorage.getItem("token"),
       clear,
     };
   },
+
   setup() {
     const route = useRoute();
     const userId = computed(() => route.params.userId)
 
             const petsFromServer = ref([])
-
-            async function getPets () {
+            const pagination = ref({totalPages: [], page: 1})
+            async function getPets(page = 1) {
                 const pets = ref([])
-                const result = await axios.get('/api/get-pets-data/'+ userId.value)
-                pets.value = result.data
+                const result = await axios.post('/api/get-pets-data/'+ userId.value, 
+                {
+                  page: page
+                },
+                )
+                // console.log(result.data)
+                pets.value = result.data.docs
+                pagination.value.totalPages = Array(result.data.totalPages).fill(0).map((page,index) => index + 1)
+                pagination.value.page = result.data.page
+                console.log("Page: " + pagination.value.page)
                 const petsByOwner = pets.value
                 petsFromServer.value = petsByOwner
                 // console.log('petsByOwner: ', petsByOwner)
+                const pagingData = result.data
+                return pagingData;
             }
+
 getPets ()
 
 // Delete
@@ -108,12 +136,18 @@ getPets ()
       userId,
       petsFromServer,
       deletePets,
+      getPets,
+      pagination,
     };
   },
 };
 </script>
 
 <style scoped>
+
+#pagination li {
+  display:inline;
+}
 
 h1 {
       margin-bottom: 5rem;
