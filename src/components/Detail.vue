@@ -48,12 +48,41 @@
             <div class="col-6">
             <button @click="deletePets(pets._id)" class="btn mx-2 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
+   <div class="col-6 d-block m-auto">
+   <div class="comments">
+            <div :class="comments_wrapper_classes">
+                <single-comment 
+                    v-for="comment in comments"
+                    :comment="comment"
+                    :key="comment.id"
+                ></single-comment>
+            </div>
+            <hr>
+            <div class="reply">
+                <input 
+                    type="text" 
+                    v-model.trim="reply" 
+                    class="reply--text" 
+                    placeholder="Leave a comment..."
+                    maxlength="250"
+                    required
+                    @keyup.enter="submitComment"
+                />
+                <button 
+                    class="reply--button" 
+                    @click.prevent="submitComment">
+                    <i class="fa fa-paper-plane"></i> Send
+                </button>
+        </div>        
+            </div>
+        </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
+  </div>
+ </div>
+
   
       
 </template>
@@ -114,6 +143,7 @@ getPets ()
       petsFromServer,
       deletePets,
     };
+    
   },
 };
 </script>
