@@ -4,7 +4,8 @@
     <div class="col">
     
       <h1 class="m-3"> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
-      <div v-if="tokenexists" class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
+      <div v-if="tokenexists && useremail.substring(0, useremail.indexOf('.')) == userId.toLowerCase()" class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
+      <!-- <div>Email: {{ useremail }} | PetOwner: {{ userId.toLowerCase() }}</div> -->
     </div>
   </div>
 
@@ -46,7 +47,7 @@
           </div>
            <div class="row">
             <div class="col-6">
-            <button v-if="tokenexists" class="btn mr-3 p-3 mb-5">
+            <button v-if="tokenexists && useremail.substring(0, useremail.indexOf('.')) == userId.toLowerCase()" class="btn mr-3 p-3 mb-5">
               <router-link :to="{ name: 'EditPet', params: { 
               userId: pets.userId,
               omanik: pets.omanik,
@@ -61,13 +62,28 @@
                </button>
             </div>
             <div class="col-6">
-            <button v-if="tokenexists" @click="deletePets(pets._id)" class="btn mr-3 p-3 mb-5">Kustuta lemmikloom</button>
+            <button v-if="tokenexists && useremail.substring(0, useremail.indexOf('.')) == userId.toLowerCase()" @click="deletePets(pets._id)" class="btn mr-3 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ul id="pagination">
+  <li v-for="(page, index) in pagination.totalPages" :key="index" @click="getPets(page)">
+
+  <button 
+  class="btn mr-3 p-3"
+  :disabled="page === pagination.page"
+  >
+  {{ page }}
+  </button>
+  
+  </li>
+</ul>
+
+
 </div>
   
       
@@ -90,6 +106,8 @@ export default {
 
     return {
       tokenexists: localStorage.getItem("token"),
+      useremail: localStorage.getItem("email"),
+      // useremail: localStorage.getItem("email").substring(0, localStorage.getItem("email").indexOf(".")),
       clear,
     };
   },
