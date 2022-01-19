@@ -1,21 +1,14 @@
 <template>
-  <div class="container layout">
+  <div class="container">
     <div
       class="row justify-content-center align-items-center"
       style="height: 100vh"
     >
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card p-3">
+      <div class="col-4">
+        <div class="card">
           <h3>Login</h3>
-          <!-- HINT -->
-          <br />
-          <!-- <p>example@test.ee</p>
-          <p>example</p> -->
-          <!-- HINT -->
           <div class="card-body">
-           
-            <div class="input-group mb-3">
-               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            <div class="form-group">
               <input
                 type="text"
                 class="form-control"
@@ -24,9 +17,7 @@
                 placeholder="exmaple@test.ee"
               />
             </div>
-            <br />
-            <div class="input-group mb-2">
-            <span class="input-group-text"><i class="fas fa-key"></i></span>
+            <div class="form-group">
               <input
                 type="password"
                 class="form-control"
@@ -35,22 +26,9 @@
                 placeholder="Password"
               />
             </div>
-            <br />
-            <div class="d-flex justify-content-between">
-              <button type="button" @click="login" class="btn login_btn">
-                Login
-              </button>
-              </div>
-              <br />
-              <div class="d-flex justify-content-between">Don't have an account?
-              <button
-                class="btn btn-secondary"
-                id="register"
-                @click="$router.push('/register')"
-              >
-                Register
-              </button>
-              </div>
+            <button type="button" @click="login" class="btn btn-primary">
+              Login
+            </button>
           </div>
         </div>
       </div>
@@ -73,6 +51,7 @@ export default defineComponent({
       });
       if (data.token) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("email", email.value);
       }
       router.push("/");
     }
@@ -84,26 +63,3 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
-.login_btn {
- width: 100%;
- }
-button{
-    background: linear-gradient(to right, #16c0b0, #84cf6a);
-  border: none;
-  border-radius: 0.5em;
-}
-#register{
-  margin: top 20px;
-}
-.card {
-  background-color: lightgrey;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
- .input-group-text {
- background: #4d4d4d  !important;
- color: white !important;
- border: 0 !important;
- border-radius: 0.25rem 0 0 0.25rem !important;
- }
-</style>
