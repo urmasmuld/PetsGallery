@@ -6,6 +6,19 @@
       <h1 class="m-3"> Kasutaja <b>{{ userId }}</b> lemmikloomad</h1>
       <div class="add my-3 h3"><router-link :to="{ name: 'NewPet', params: { userId: userId }}">Lisa uus lemmik</router-link></div>
     </div>
+    <div
+        class="row d-flex justify-content-between align-items-center header-row"
+      >
+        <div class="col-sm-12 col col-md-12 col-lg-3 float-left">
+          <div class="row m-3 justify-content-end">
+            <button @click="$router.push('/login')" v-if="!token">Login</button>
+            <button @click="$router.push('/register')" v-if="!token">
+              Register
+            </button>
+            <button @click="logout" v-if="token">Logout</button>
+          </div>
+        </div>
+  </div>
   </div>
 
 <div class="project-container">
