@@ -2,13 +2,22 @@ const express = require("express");
 const router = express.Router();
 // const petsData = require('./data.json')
 const { Pets } = require("./dbConnection");
+const authRoutes = require("./authenticate.router");
 
-router.get("/get-pets-data/:id", async function(request, response) {
+router.use("/auth", authRoutes);
+
+router.post("/get-pets-data/:userId", async function(request, response) {
     // response.send(petsData);
     // console.log(request.body)
-    let omanik = request.params.id;
-    const result = await Pets.find({ omanik: omanik });
-    console.log(result);
+    let omanik = request.params.userId;
+    const options = { 
+        page: request.body.page || 1,
+        limit: request.body.limit || 1,
+        projection: { pilt64: 0 },
+        // sort: { loomaNimi: 1 },
+     }
+    const result = await Pets.paginate({ omanik: omanik }, options);
+    // console.log(result);
     response.send(result);
   });
 
@@ -28,7 +37,7 @@ router.get("/get-pets-data/:id", async function(request, response) {
 });
 
 router.post("/edit-pet/", async function (request, response) {
-  console.log(request.body)
+  // console.log(request.body)
   if (request.body.pet_id) {
   await Pets.updateOne(
     { _id: request.body.pet_id }, 
