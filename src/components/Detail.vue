@@ -70,7 +70,6 @@ export default {
   setup() {
     const route = useRoute();
     const userId = computed(() => route.params.userId)
-
             const petsFromServer = ref([])
 
             async function getPets () {
@@ -83,16 +82,18 @@ export default {
             }
 getPets ()
 
+getPets(route.params.id);
+
 // Delete
     async function deletePets(id) {
       await axios.get("/api/delete-pets/" + id);
       await getPets();
     }
-
+   
     return {
       userId,
       petsFromServer,
-      deletePets,
+      deletePets,   
     };
   },
 };
