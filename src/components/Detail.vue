@@ -45,12 +45,17 @@
                 Lemmiku iseloom: <b>{{ pets.iseloom }}</b>
               </li>
               <li>
-                Kommentaarid:  <b>{{ pets.kommentaarid }}</b>
+                Kommentaarid: 
+                <div v-for="(comments, index) in pets.kommentaarid" :key="index">
+                  #{{ index+1 }} {{  }} <!-- See näitab kommentaari numbrit -->
+                   <b>{{ comments.message }} </b> <br> <!-- Kommentaari sisu -->
+                  Lisas: <b>{{ comments.username }}</b> <!-- kommentaari lisaja -->
+                </div>
               </li>
             </div>
             <div class="row">
               <div class="col-6">
-                <button class="btn mx-5 p-3 mb-5">
+                <button class="btn mx-4 p-2 mb-4">
                   <router-link
                     :to="{
                       name: 'EditPet',
@@ -72,13 +77,13 @@
                 </button>
               </div>
               <div class="col-6">
-                <button @click="deletePets(pets._id)" class="btn mx-5 p-3 mb-5">
+                <button @click="deletePets(pets._id)" class="btn mx-4 p-2 mb-4">
                   Kustuta lemmikloom
                 </button>
               </div>
               <div class="col-6">
                 <p>
-                  <label for="comments-username">Kasutaja</label>
+                  <label for="comments-username">Kasutaja </label>
                   <input
                     id="comments-username"
                     v-model="comments.username"
@@ -89,7 +94,7 @@
               </div>
               <div class="col-6">
                 <p>
-                  <label for="comments-message">Kommentaar</label>
+                  <label for="comments-message">Kommentaar </label>
                   <input
                     id="comments-message"
                     v-model="comments.message"
@@ -99,7 +104,7 @@
                 </p>
               </div>
               <div class="col-6">
-                <button @click="addComment(pets._id)" class="btn mx-5 p-3 mb-5">
+                <button @click="addComment(pets._id)" class="btn mx-4 p-2 mb-4">
                   Lisa kommentaar
                 </button>
               </div>
@@ -193,10 +198,10 @@ h1 {
 }
 
 .project__text {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  font-size: 1.5rem;
-  line-height: 2;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 1.4rem;
+  line-height: 1.5;
   letter-spacing: 2px;
 }
 
