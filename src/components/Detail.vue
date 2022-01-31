@@ -162,6 +162,9 @@ export default {
         message: comments.value.message,
         username: comments.value.username,
       });
+      comments.value.message = "";
+      comments.value.username = "";
+      await getPets();
     }
 
             async function getPets(page = 1) {
