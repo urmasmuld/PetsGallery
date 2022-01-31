@@ -1,5 +1,6 @@
 <template>
 <div class="addnew">
+  <div v-if="tokenexists">
   <p>
     <label for="name">Omanik</label>
 
@@ -124,7 +125,13 @@
       value="Submit"
     >Salvesta</button>
   </p>
-
+</div>
+<div v-else>
+  <a
+    class="btn btn-info m-3"
+    onclick="location.href='/Login';"
+    >Logi sisse</a>
+</div>
 </div>
 </template>
 
@@ -143,6 +150,17 @@ export default {
   name: "AddNewPet",
   props: {
     title: String,
+  },
+  data() {
+    function clear() {
+      localStorage.clear();
+      //  console.log(localStorage.getItem("token"));
+    }
+
+    return {
+      tokenexists: localStorage.getItem("token"),
+      clear,
+    };
   },
 
   setup() {
@@ -191,7 +209,7 @@ export default {
           const base64_s = await resizeBase64Img(fileLoadedEvent.target.result, 400, 400)
 					imgdata_s.value = base64_s; // <--- data: base64
           document.getElementById("imgdata_s").innerHTML = imgdata_s.value;
-          console.log(imgdata.value)
+          // console.log(imgdata.value)
 				}
 				fileReader.readAsDataURL(fileToLoad);
 			}
@@ -237,15 +255,13 @@ function resizeBase64Img(base64, newWidth, newHeight) {
         iseloom: state.character,
         pilt64: imgdata.value,
         pilt64_s: imgdata_s.value,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+      },
       });
       router.push({ name: 'detail', params: {userId: userId.value}});
-      // pet_name.value = "";
-      // species.value = "";
-      // age.value = "";
-      // gender.value = "";
-      // appearance.value = "";
-      // character.value = "";
-      // imgdata.value = "";
     }
 
     return {
