@@ -63,8 +63,7 @@
       name="character"
     >
   </p>
-
-  <p>
+      <p>
     <button
     @click.prevent="editPet"
       type="submit"

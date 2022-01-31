@@ -44,6 +44,14 @@
                 <li> Lemmiku sugu: <b>{{ pets.sugu }}</b> </li>
                 <li> Lemmiku välimus: <b>{{ pets.v2limus }}</b> </li>
                 <li> Lemmiku iseloom: <b>{{ pets.iseloom }}</b> </li>
+                <li>
+                  Kommentaarid: 
+                  <div v-for="(comments, index) in pets.kommentaarid" :key="index">
+                    #{{ index+1 }} {{  }} <!-- See näitab kommentaari numbrit -->
+                    <b>{{ comments.message }} </b> <br> <!-- Kommentaari sisu -->
+                    Lisas: <b>{{ comments.username }}</b> <!-- kommentaari lisaja -->
+                  </div>
+                </li>
           </div>
            <div class="row">
             <div class="col-6">
@@ -64,6 +72,35 @@
             <div class="col-6">
             <button v-if="tokenexists && useremail.substring(0, useremail.indexOf('.')) == userId.toLowerCase()" @click="deletePets(pets._id)" class="btn mr-3 p-3 mb-5">Kustuta lemmikloom</button>
             </div>
+
+            <div class="col-6">
+              <p>
+                <label for="comments-username">Kasutaja </label>
+                <input
+                  id="comments-username"
+                  v-model="comments.username"
+                  type="text"
+                  name="comments-username"
+                />
+              </p>
+            </div>
+            <div class="col-6">
+              <p>
+                <label for="comments-message">Kommentaar </label>
+                <input
+                  id="comments-message"
+                  v-model="comments.message"
+                  type="text"
+                  name="comments-message"
+                />
+              </p>
+            </div>
+            <div class="col-6">
+              <button @click="addComment(pets._id)" class="btn mx-4 p-2 mb-4">
+                Lisa kommentaar
+              </button>
+            </div>
+
         </div>
       </div>
     </div>
@@ -103,7 +140,6 @@ export default {
       localStorage.clear();
       //  console.log(localStorage.getItem("token"));
     }
-
     return {
       tokenexists: localStorage.getItem("token"),
       useremail: localStorage.getItem("email"),
@@ -111,13 +147,23 @@ export default {
       clear,
     };
   },
-
   setup() {
     const route = useRoute();
     const userId = computed(() => route.params.userId)
-
             const petsFromServer = ref([])
             const pagination = ref({totalPages: [], page: 1})
+
+    const comments = ref({
+      message: "",
+      username: "",
+    });
+    async function addComment(id) {
+      await axios.post("/api/add-comment/" + id, {
+        message: comments.value.message,
+        username: comments.value.username,
+      });
+    }
+
             async function getPets(page = 1) {
                 const pets = ref([])
                 const result = await axios.post('/api/get-pets-data/'+ userId.value, 
@@ -136,9 +182,7 @@ export default {
                 const pagingData = result.data
                 return pagingData;
             }
-
 getPets ()
-
 // Delete
     async function deletePets(id) {
       const result = await axios.get("/api/delete-pets/" + id, {headers: {
@@ -149,29 +193,27 @@ getPets ()
         result.data
       await getPets();
     }
-
     return {
       userId,
       petsFromServer,
       deletePets,
       getPets,
       pagination,
+      comments,
+      addComment,
     };
   },
 };
 </script>
 
 <style scoped>
-
 #pagination li {
   display:inline;
 }
-
 h1 {
       margin-bottom: 5rem;
       text-transform: uppercase;
 }
-
 .project-container {
   border:solid black 3px;
   border-radius: 25px;
@@ -179,7 +221,6 @@ h1 {
   padding: 25px;
   
 }
-
 .project {
 	display:flex;
 	list-style-type: none;
@@ -188,7 +229,6 @@ h1 {
   text-align: left;
     
   }
-
   .project__text, .project__image {
     padding:35px;
     }
@@ -206,7 +246,6 @@ h1 {
   flex-direction: row-reverse;
   text-align: right;
 }
-
 img {
     
     display: block;

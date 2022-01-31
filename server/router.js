@@ -55,4 +55,15 @@ router.post("/edit-pet/", async function (request, response) {
   response.send("done");
 });
 
+router.post("/add-comment/:id", async function (request, response) {
+  console.log(request.body);
+  await Pets.updateOne(
+    { _id: request.params.id },
+    { $push: { kommentaarid: request.body } }
+  );
+  console.log("Add comment...");
+
+  response.send("done");
+});
+
 module.exports = router;
