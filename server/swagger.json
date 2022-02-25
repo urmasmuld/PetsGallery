@@ -167,7 +167,7 @@
               "in": "body",
               "name": "dataArray",
               "type": "array",
-              "example": "{\"pet_id\": \"62188293093e4c6e3ed7e941\",\"omanik\": \"Urmas\",\"loomaNimi\": \"TestikasXXX\",\"liik\": \"Liik\",\"vanus\": 5,\"sugu\": \"Emane\",\"v2limus\": \"sadsadsad\",\"iseloom\": \"sadsadsadsa\"}",
+              "example": "{\"pet_id\": \"61c02d9fa5951ebd0d9d61f0\",\"omanik\": \"Urmas\",\"loomaNimi\": \"KiisumiisuXXX\",\"liik\": \"Kass\",\"vanus\": 4,\"sugu\": \"Isane\",\"v2limus\": \"MustValge\",\"iseloom\": \"Ise Loom\"}",
               "required": true
             }
           ],
