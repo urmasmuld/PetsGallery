@@ -1,8 +1,31 @@
+/* eslint-disable prettier/prettier */
 const express = require("express");
 const router = express.Router();
 // const petsData = require('./data.json')
 const { Pets } = require("./dbConnection");
 const authRoutes = require("./authenticate.router");
+
+const swaggerUi = require("swagger-ui-express"),
+swaggerDocument = require("./swagger.json");
+
+var options = {
+  components: {
+    securitySchemes: {
+      jwt: {
+        type: "http",
+        scheme: "bearer",
+        in: "header",
+        bearerFormat: "JWT"
+      },
+    }
+  },
+  security: [{
+    jwt: []
+  }]
+};
+
+router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+// router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 router.use("/auth", authRoutes);
 
