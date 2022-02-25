@@ -25,7 +25,6 @@ var options = {
 };
 
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-// router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 router.use("/auth", authRoutes);
 
