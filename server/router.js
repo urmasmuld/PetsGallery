@@ -5,27 +5,6 @@ const router = express.Router();
 const { Pets } = require("./dbConnection");
 const authRoutes = require("./authenticate.router");
 
-const swaggerUi = require("swagger-ui-express"),
-swaggerDocument = require("./swagger.json");
-
-var options = {
-  components: {
-    securitySchemes: {
-      jwt: {
-        type: "http",
-        scheme: "bearer",
-        in: "header",
-        bearerFormat: "JWT"
-      },
-    }
-  },
-  security: [{
-    jwt: []
-  }]
-};
-
-router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-
 router.use("/auth", authRoutes);
 
 router.post("/get-pets-data/:userId", async function(request, response) {
